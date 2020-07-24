@@ -2,10 +2,13 @@
 
 ## Team Members
 
-| Role               | Name      |
-|--------------------|-----------|
-| Frontend Developer | John Doe  |
-| Backend Developer  | Jane Doe  |
+| Role               | Name             |
+|--------------------|------------------|
+| Frontend Developer | Esra Şafak       |
+| Frontend Developer | Tarık Köprülü    |
+| Frontend Developer | Tolga Gölet      |
+| Backend Developer  | Kubilay Çiçek    |
+| Backend Developer  | Tolga Aksoy      |
 
 ## Project
 
