@@ -1,0 +1,43 @@
+#title-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 30px;
+}
+
+#title-row h2 {
+  margin: 0;
+}
+
+#title-row .form-control {
+  width: unset;
+  max-width: 400px;
+  flex-grow: 1;
+  font-size: 12px;
+  margin-left: 10%;
+  padding-right: 36px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 40px;
+  bottom: 36px;
+}
+
+@media (max-width: 450px) {
+  #title-row {
+    display: block;
+  }
+
+  #title-row .form-control {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: unset;
+  }
+
+  .search-icon {
+    bottom: 33px;
+  }
+}

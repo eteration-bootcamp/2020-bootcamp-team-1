@@ -1,0 +1,17 @@
+.todo-item.list-group-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-item .form-check {
+  width: unset;
+}
+
+.todo-item p {
+  flex-grow: 1;
+  margin: 0 10px 0 10px;
+  word-break: break-all;
+  white-space: normal;
+}
