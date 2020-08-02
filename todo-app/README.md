@@ -12,7 +12,7 @@
 * Swagger UI
 * H2 Database
 
-###Swagger
+### Swagger
 http://localhost:8080/swagger-ui.html
 
 ### Database Configuration (application.properties)
@@ -39,4 +39,28 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 | http://localhost:8080/todo-app/ |`POST`   |  TodoDto | Create Todo
 | http://localhost:8080/todo-app/ |`PUT`   |  TodoDto | Update Todo
 
-## UI
+## Front-End
+
+This project was bootstrapped with create-react-app.
+
+### Demo
+Live functionality demo (without API & Redux) https://team1-todo.netlify.app
+
+
+### Libraries :
+
+- bootstrap
+- react-bootstrap
+- redux
+- react-redux
+- redux-saga
+- axios
+
+### Features
+
+- Adding new todo
+- Removing todo
+- Seeing list of todos
+- Search a todo by its text
+- Mark todo as complete
+- Responsive & User-Friendly & Simple Layout
