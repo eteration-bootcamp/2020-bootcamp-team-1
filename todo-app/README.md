@@ -1,7 +1,7 @@
-#TodoList Application
+# TodoList Application
 
 
-##Backend
+## Backend
 ### Used Technologies
 * Java 11
 * Spring Boot
@@ -39,4 +39,4 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 | http://localhost:8080/todo-app/ |`POST`   |  TodoDto | Create Todo
 | http://localhost:8080/todo-app/ |`PUT`   |  TodoDto | Update Todo
 
-##UI
+## UI
