@@ -16,7 +16,6 @@ public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
     @Override
     public RecipeDto addRecipe(RecipeDto recipeDto) {
-
         return recipeMapper.toRecipeDto(recipeRepository.save(recipeMapper.toRecipe(recipeDto)));
     }
     @Override
