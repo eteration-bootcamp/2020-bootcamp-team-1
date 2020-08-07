@@ -10,7 +10,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public abstract class BaseEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
 }

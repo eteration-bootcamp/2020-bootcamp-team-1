@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IngredientDto extends  BaseDto {
     private String name;
-    private RecipeDto recipe;
+    //private RecipeDto recipe;
 }
