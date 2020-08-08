@@ -1,0 +1,24 @@
+.Navbar {
+  background-color: #c6693d;
+}
+
+.Ungrow {
+  flex-grow: unset;
+}
+
+.BrandLogo {
+  width: 32px;
+}
+
+.BrandName {
+  color: #eee;
+  position: absolute;
+  display: inline-block;
+  left: 60px;
+}
+
+@media (max-width: 900px) {
+  .BrandName {
+    display: none;
+  }
+}

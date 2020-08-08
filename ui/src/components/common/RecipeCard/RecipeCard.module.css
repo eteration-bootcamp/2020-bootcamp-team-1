@@ -1,8 +1,3 @@
-.Layout {
-  column-count: 2;
-  column-gap: 10px;
-}
-
 .Card {
   margin: 6px;
   width: 100%;
@@ -24,10 +19,6 @@
 }
 
 @media (min-width: 800px) {
-  .Layout {
-    column-count: 3;
-  }
-
   .Card {
     margin: 10px;
   }
@@ -38,11 +29,5 @@
 
   .Card > div {
     padding: 12px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .Layout {
-    column-count: 4;
   }
 }
