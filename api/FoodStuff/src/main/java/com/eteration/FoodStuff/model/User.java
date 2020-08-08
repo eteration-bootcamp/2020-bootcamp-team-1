@@ -23,6 +23,6 @@ public class User extends BaseEntity {
     @Column
     private String about;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, targetEntity = Recipe.class, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Recipe.class, mappedBy = "user")
     public List<Recipe> recipes = new ArrayList<>();
 }

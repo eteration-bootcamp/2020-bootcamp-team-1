@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class DirectionDto extends  BaseDto {
     private byte stepNumber;
     private String description;
-    private RecipeDto recipe;
+   //private RecipeDto recipe;
 }

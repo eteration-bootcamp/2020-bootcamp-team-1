@@ -13,6 +13,7 @@ import java.util.List;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Recipe extends BaseEntity {
     @Column
     private String title;
@@ -36,11 +37,11 @@ public class Recipe extends BaseEntity {
     @JoinColumn
     private User user;
 
-    @JsonIgnoreProperties("recipe")
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, targetEntity = Ingredient.class, mappedBy = "recipe")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = Ingredient.class)
+    @JoinColumn(name="recipe_id", referencedColumnName="id")
     public List<Ingredient> ingredients = new ArrayList<>();
 
-    @JsonIgnoreProperties("recipe")
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, targetEntity = Direction.class, mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Direction.class)
+    @JoinColumn(name="recipe_id", referencedColumnName="id")
     public List<Direction> directions = new ArrayList<>();
 }
