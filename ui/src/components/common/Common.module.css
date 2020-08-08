@@ -1,0 +1,21 @@
+.SearchbarWrapper {
+  width: unset;
+  flex-grow: 1;
+}
+
+.Searchbar {
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+}
+
+.Searchbar input {
+  padding-right: 36px;
+}
+
+.SearchIcon {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  bottom: 20%;
+}
