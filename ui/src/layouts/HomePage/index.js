@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import RecipeCard from "../../components/common/RecipeCard";
 import Container from "react-bootstrap/esm/Container";
 
-const index = () => {
+const HomePage = () => {
   const tempLink =
     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20190503-delish-pineapple-baked-salmon-horizontal-ehg-450-1557771120.jpg?crop=1.00xw:0.753xh;0,0.132xh&resize=980:*";
   return (
@@ -129,4 +129,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default HomePage;
