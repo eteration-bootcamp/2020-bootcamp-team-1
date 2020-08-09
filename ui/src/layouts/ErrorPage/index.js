@@ -1,8 +1,18 @@
-import React from "react";
-import styles from "./ErrorPage.module.css";
+import React, { Fragment } from "react";
+import Container from "react-bootstrap/Container";
+import ErrorSvg from "../../components/svgs/ErrorSvg";
+import Button from "react-bootstrap/Button";
 
-const index = () => {
-  return <div className={styles.Card}>Error Page</div>;
+const ErrorPage = () => {
+  return (
+    <Container className="layout lower text-center">
+      <Container className="d-flex justify-content-center">
+        <ErrorSvg />
+      </Container>
+      <h2 className="my-5">There was an error :(</h2>
+      <Button size="lg">Go back to home</Button>
+    </Container>
+  );
 };
 
-export default index;
+export default ErrorPage;
