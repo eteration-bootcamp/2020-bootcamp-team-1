@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #f8f8f8;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -16,7 +17,7 @@ code {
   margin-top: 66px;
 }
 
-.layout.lower{
+.layout.lower {
   margin-top: 99px;
 }
 
@@ -30,12 +31,28 @@ code {
   background: #ccc;
 }
 
-.ds{
+.ds {
   align-items: flex-start;
 }
 
-.form-control::-webkit-input-placeholder { color: #888; }  /* WebKit, Blink, Edge */
-.form-control:-moz-placeholder { color: #888; }  /* Mozilla Firefox 4 to 18 */
-.form-control::-moz-placeholder { color: #888; }  /* Mozilla Firefox 19+ */
-.form-control:-ms-input-placeholder { color: #888; }  /* Internet Explorer 10-11 */
-.form-control::-ms-input-placeholder { color: #888; }  /* Microsoft Edge */
+.btn.btn-primary {
+  background-color: #dcc983;
+  font-weight: 600;
+  border: none;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #888;
+} /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder {
+  color: #888;
+} /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder {
+  color: #888;
+} /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder {
+  color: #888;
+} /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder {
+  color: #888;
+} /* Microsoft Edge */

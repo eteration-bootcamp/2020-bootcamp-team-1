@@ -1,8 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styles from "./HomePage.module.css";
-import Navbar from "../../components/Navbar";
-// import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import RecipeCard from "../../components/common/RecipeCard";
 import Container from "react-bootstrap/esm/Container";
 

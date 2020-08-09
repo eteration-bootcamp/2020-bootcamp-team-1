@@ -1,5 +1,6 @@
 .Navbar {
-  background-color: #c6693d;
+  /* background-color: #c6693d; */
+  background-color: #e98f46
 }
 
 .Ungrow {
@@ -15,6 +16,10 @@
   position: absolute;
   display: inline-block;
   left: 60px;
+}
+
+.Modal > div {
+  max-width: 400px;
 }
 
 @media (max-width: 900px) {

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import NotFoundSvg from "../../components/svgs/NotFoundSvg";
 import Button from "react-bootstrap/Button";
@@ -10,7 +10,7 @@ const NotFound = () => {
         <NotFoundSvg />
       </Container>
       <h2 className="my-5">The page you looking for is not here :(</h2>
-      <Button size="lg">Go back to home</Button>
+      <Button className="mb-5" size="lg">Go back to home</Button>
     </Container>
   );
 };

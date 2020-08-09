@@ -13,7 +13,7 @@ const DetailsPage = () => {
     <Container className="p-0 narrow-layout layout justify-content-center">
       {/* IMAGE */}
       <Container className="justify-content-center">
-        <img className={styles.GrandImage} src={tempLink} />
+        <img alt="" className={styles.GrandImage} src={tempLink} />
       </Container>
       {/* TITLE DESC AND TIME */}
       <Container>
