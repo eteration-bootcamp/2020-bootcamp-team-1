@@ -24,3 +24,8 @@
 .ResInput {
   display: block;
 }
+
+.Fluid{
+  flex-grow: 100;
+  width: unset;
+}
