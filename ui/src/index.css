@@ -41,6 +41,11 @@ code {
   border: none;
 }
 
+.cursor-hover:hover,
+.cursor-hover:active {
+  cursor: pointer;
+}
+
 .form-control::-webkit-input-placeholder {
   color: #888;
 } /* WebKit, Blink, Edge */
@@ -56,3 +61,9 @@ code {
 .form-control::-ms-input-placeholder {
   color: #888;
 } /* Microsoft Edge */
+
+@media (max-width: 800px) {
+  .hide-below-medium {
+    display: none;
+  }
+}

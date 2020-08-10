@@ -52,8 +52,7 @@ public class DataInitializer implements CommandLineRunner {
 
         recipe.setDirections(directions);
 
-      Recipe recipe1 =  recipeRepository.save(recipe);
+        Recipe recipe1 = recipeRepository.save(recipe);
         System.out.println(recipe1);
-
     }
 }
