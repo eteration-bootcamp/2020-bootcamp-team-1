@@ -1,0 +1,84 @@
+.Layout {
+    column-count: 2;
+    column-gap: 10px;
+  }
+  
+.Card {
+    margin: 6px;
+    width: 100%;
+    text-align: left;
+    display: inline-block;
+    max-width: 300px;
+}
+  
+.Card .CardImage {
+    height: 140px;
+    object-fit: cover;
+}
+  
+.Card > div {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profileImageRounded {
+    height: 100px;
+    width: 100px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+}
+
+.nameText {
+    margin-top: 10px;
+    font-size: 40px;
+    line-height: 1;
+}
+
+.recipesCountBox {
+    min-width: 116px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.recipesCountBox u {
+    font-size: 18px;
+}
+
+.recipesCountBox p {
+    font-size: 36px;
+    margin-top: -10px;
+}
+  
+@media (min-width: 800px) {
+    .Layout {
+        column-count: 3;
+    }
+
+    .Card {
+        margin: 10px;
+    }
+
+    .Card .CardImage {
+        height: 200px;
+    }
+
+    .Card > div {
+        padding: 12px;
+    }
+}
+  
+@media (min-width: 1200px) {
+    .Layout {
+        column-count: 4;
+    }
+}
+  
