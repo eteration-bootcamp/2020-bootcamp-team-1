@@ -1,6 +1,5 @@
 package com.eteration.FoodStuff.api;
 
-import com.eteration.FoodStuff.dto.RecipeDto;
 import com.eteration.FoodStuff.request.RecipeRequest;
 import com.eteration.FoodStuff.response.RecipeListResponse;
 import com.eteration.FoodStuff.response.RecipeResponse;
@@ -9,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
