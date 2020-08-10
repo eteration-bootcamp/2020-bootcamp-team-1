@@ -9,6 +9,9 @@ import DetailsPage from "./layouts/DetailsPage";
 import PostPage from "./layouts/PostPage";
 import ProfilePage from "./layouts/ProfilePage";
 import Navbar from "./components/Navbar";
+import Fab from "./components/common/Fab";
+import Image from "react-bootstrap/Image";
+import Avatar from "./components/common/Avatar";
 
 function App() {
   return (
@@ -16,10 +19,15 @@ function App() {
       <Navbar
         actions={() => (
           <Fragment>
-            <Button>Join</Button>
+            <Button className="mr-3 hide-below-medium">
+              Create New Recipe
+            </Button>
+            <Avatar name="Tarık Qöprülü Gonzales di caprio" />
+            {/* <Button>Join</Button> */}
           </Fragment>
         )}
       />
+      <Fab />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}
