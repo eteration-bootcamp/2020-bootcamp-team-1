@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-
 import HomePage from "./layouts/HomePage";
 import ErrorPage from "./layouts/ErrorPage";
 import NotFound from "./layouts/NotFound";
@@ -10,7 +9,6 @@ import PostPage from "./layouts/PostPage";
 import ProfilePage from "./layouts/ProfilePage";
 import Navbar from "./components/Navbar";
 import Fab from "./components/common/Fab";
-import Image from "react-bootstrap/Image";
 import Avatar from "./components/common/Avatar";
 
 function App() {
@@ -22,7 +20,7 @@ function App() {
             <Button className="mr-3 hide-below-medium">
               Create New Recipe
             </Button>
-            <Avatar name="Tarık Qöprülü Gonzales di caprio" />
+            <Avatar name="Tarık Köprülü" />
             {/* <Button>Join</Button> */}
           </Fragment>
         )}

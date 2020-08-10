@@ -10,7 +10,7 @@ const Avatar = ({ name }) => {
     <span
       className={
         styles.Avatar +
-        " d-flex justify-content-center align-items-center rounded-circle"
+        " d-flex justify-content-center align-items-center rounded-circle cursor-hover"
       }
     >
       {letters}
