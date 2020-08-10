@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./RecipeCard.module.css";
+import styles from "../Common.module.css";
 import TimerSvg from "../../svgs/TimerSvg";
 import Card from "react-bootstrap/Card";
 import Ellipsis from "react-ellipsis-pjs";

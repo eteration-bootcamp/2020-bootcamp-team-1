@@ -1,3 +1,4 @@
+/* SEARCHBAR STYLES */
 .SearchbarWrapper {
   width: unset;
   flex-grow: 1;
@@ -18,4 +19,61 @@
   right: 10px;
   top: 20%;
   bottom: 20%;
+}
+
+/* AVATAR STYLES */
+.Avatar {
+  background: #900;
+  color: #fff;
+  padding: 5px 10px;
+  width: 36px;
+  height: 36px;
+}
+
+/* FAB STYLES */
+.Fab {
+  background-color: #e98f46;
+  z-index: 1;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* CARD STYLES */
+.Card {
+  margin: 6px;
+  width: 100%;
+  text-align: left;
+  display: inline-block;
+  max-width: 300px;
+}
+
+.Card .CardImage {
+  height: 140px;
+  object-fit: cover;
+}
+
+.Card > div {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 800px) {
+  .Fab {
+    display: none;
+  }
+
+  .Card {
+    margin: 10px;
+  }
+
+  .Card .CardImage {
+    height: 200px;
+  }
+
+  .Card > div {
+    padding: 12px;
+  }
 }
