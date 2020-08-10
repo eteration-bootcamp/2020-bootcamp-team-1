@@ -6,7 +6,7 @@ import Ellipsis from "react-ellipsis-pjs";
 
 const RecipeCard = ({ item: { title, prepTime, description, image } }) => {
   return (
-    <Card className={styles.Card}>
+    <Card className={styles.Card+" cursor-hover"}>
       <Card.Img variant="top" src={image} className={styles.CardImage} />
       <Card.Body>
         <Ellipsis

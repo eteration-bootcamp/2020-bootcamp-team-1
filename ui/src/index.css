@@ -41,6 +41,10 @@ code {
   border: none;
 }
 
+.btn.btn-primary:active:focus {
+  background-color: #b6a361;
+}
+
 .cursor-hover:hover,
 .cursor-hover:active {
   cursor: pointer;
