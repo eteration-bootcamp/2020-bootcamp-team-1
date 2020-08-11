@@ -12,10 +12,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @JsonIgnoreProperties("recipe")
 public class Direction extends BaseEntity {
-    @Column
+    @Column(nullable = true)
     private byte stepNumber;
     @Lob
-    @Column
+    @Column(nullable = true)
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL,targetEntity = Recipe.class)

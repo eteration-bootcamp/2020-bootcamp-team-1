@@ -12,7 +12,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @JsonIgnoreProperties("recipe")
 public class Ingredient  extends BaseEntity{
-    @Column
+    @Lob
+    @Column(nullable = true)
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY ,targetEntity = Recipe.class)

@@ -7,7 +7,7 @@ const Requestor = () => {
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  const url = "/send";
+  const url = "/api/recipes/";
 
   const onClick2 = async () => {
     const items = JSON.parse(localStorage.getItem("itemsArray")) || [];
@@ -21,9 +21,10 @@ const Requestor = () => {
           await fetch(url, {
             method: "POST",
             headers: {
-              accept: "application/json"
+              accept: "application/json",
+              "Content-Type": "application/json"
             },
-            body: JSON.stringify(item)
+            body: JSON.stringify({recipeDto:item})
           }).then(res => console.log(`${index} sent successfully.`));
         } catch (error) {
           console.error(`${index} failed`);

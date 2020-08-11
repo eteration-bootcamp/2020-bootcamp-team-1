@@ -15,22 +15,24 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Recipe extends BaseEntity {
-    @Column
+    @Column(nullable = true)
     private String title;
 
-    @Column
+    @Lob
+    @Column(nullable = true)
     private String description;
 
-    @Column
+    @Column(nullable = true)
     private String prepTime;
 
-    @Column
+    @Column(nullable = true)
     private String serving;
 
-    @Column
+    @Lob
+    @Column(nullable = true)
     private String chefTips;
 
-    @Column
+    @Column(nullable = true)
     private String image;
 
     @ManyToOne

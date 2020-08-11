@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/recipes/")
+@RequestMapping("api/recipes/")
 public class RecipeController {
     private final RecipeService recipeService;
 

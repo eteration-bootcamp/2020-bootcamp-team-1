@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Lob;
 import java.util.List;
 
 
@@ -13,9 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 public class RecipeDto extends BaseDto {
     private String title;
+    @Lob
     private String description;
     private String prepTime;
     private String serving;
+    @Lob
     private String chefTips;
     private String image;
     private UserDto user;
