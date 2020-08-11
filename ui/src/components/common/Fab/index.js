@@ -4,13 +4,11 @@ import PlusSvg from "../../svgs/PlusSvg";
 import ConfirmSvg from "../../svgs/ConfirmSvg";
 
 // TYPES : plus or confirm
-const Fab = ({ type = "plus" }) => {
+const Fab = ({ type = "plus", onClick }) => {
   return (
     <div
-      className={
-        "cursor-hover position-fixed p-2 rounded-circle " +
-        styles.Fab
-      }
+      onClick={onClick}
+      className={"cursor-hover position-fixed p-2 rounded-circle " + styles.Fab}
     >
       {type === "plus" ? <PlusSvg /> : <ConfirmSvg />}
     </div>

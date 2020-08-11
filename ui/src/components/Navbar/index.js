@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Searchbar from "../common/Searchbar";
 import JoinModal from "../modals/JoinModal";
+import ActionButton from "../ActionButton";
 
-const Nav = ({ actions: Components }) => {
+const Nav = ({ history }) => {
+  const {
+    push,
+    location: { pathname }
+  } = history;
+
+  history.listen((location, action) => {});
+
+  const [showModal, setShowModal] = useState(false);
+
+  const onClick = () => {
+    if (1 === 1) {
+      // user not logged in
+      setShowModal(true);
+      console.log("OK");
+    } else if (pathname === "/new") alert("OK");
+    else push("/new");
+  };
+
   return (
     <Navbar
       fixed="top"
@@ -23,14 +42,14 @@ const Nav = ({ actions: Components }) => {
         <h3 className={styles.BrandName}>Foodstuff</h3>
       </Link>
       <Searchbar />
-      {Components && <Components />}
-      {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav" className={styles.Ungrow}>
-        <Nav className="mr-auto">{Components && <Components />}</Nav>
-      </Navbar.Collapse> */}
-      <JoinModal />
+      <ActionButton
+        isLoggedIn={false}
+        onClick={onClick}
+        isPost={pathname === "/new"}
+      />
+      <JoinModal onClose={() => setShowModal(false)} showModal={showModal} />
     </Navbar>
   );
 };
 
-export default Nav;
+export default withRouter(Nav);
