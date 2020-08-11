@@ -39,4 +39,15 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity deleteRecipe(@PathVariable(name = "{id}") long id) {
+        try {
+            recipeService.removeRecipe(id);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
 }
