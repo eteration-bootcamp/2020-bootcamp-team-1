@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import ErrorSvg from "../../components/svgs/ErrorSvg";
-import Button from "react-bootstrap/Button";
+import BackButton from "../../components/common/BackButton";
 
 const ErrorPage = () => {
   return (
@@ -10,9 +10,7 @@ const ErrorPage = () => {
         <ErrorSvg />
       </Container>
       <h2 className="my-5">There was an error :(</h2>
-      <Button className="mb-5" size="lg">
-        Go back to home
-      </Button>
+      <BackButton />
     </Container>
   );
 };

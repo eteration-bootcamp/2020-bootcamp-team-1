@@ -4,9 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./JoinModal.module.css";
 
-const JoinModal = () => {
+const JoinModal = ({ showModal, onClose }) => {
   // FOR MODALS
-  const [showModal, setShowModal] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
 
   const switchState = () => setIsLogin(!isLogin);
@@ -18,7 +17,7 @@ const JoinModal = () => {
     <Modal
       className={styles.Modal + " p-0 text-center"}
       show={showModal}
-      onHide={() => setShowModal(false)}
+      onHide={onClose}
     >
       <Modal.Header className="border-bottom-0" closeButton />
       <h2 className="mb-4">{text}</h2>
