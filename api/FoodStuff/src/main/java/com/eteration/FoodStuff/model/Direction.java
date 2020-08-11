@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class Direction extends BaseEntity {
     @Column
     private byte stepNumber;
+    @Lob
     @Column
     private String description;
 

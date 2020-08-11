@@ -7,7 +7,7 @@ const Requestor = () => {
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  const url = "http://localhost:8080/recipe";
+  const url = "/send";
 
   const onClick2 = async () => {
     const items = JSON.parse(localStorage.getItem("itemsArray")) || [];
@@ -18,14 +18,13 @@ const Requestor = () => {
     await Promise.all(
       uniqueList.map(async (item, index) => {
         try {
-          // await fetch(url, {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //     accept: "application/json"
-          //   },
-          //   body: JSON.stringify(item)
-          // }).then(res => console.log(`${index} sent successfully.`));
+          await fetch(url, {
+            method: "POST",
+            headers: {
+              accept: "application/json"
+            },
+            body: JSON.stringify(item)
+          }).then(res => console.log(`${index} sent successfully.`));
         } catch (error) {
           console.error(`${index} failed`);
         }
@@ -43,13 +42,13 @@ const Requestor = () => {
 
       const response = await fetch(
         `https://yummly2.p.rapidapi.com/feeds/list?tag=list.recipe.popular&limit=18&start=${count +
-          1}`,
+        1}`,
         {
           method: "GET",
           headers: {
             "x-rapidapi-host": "yummly2.p.rapidapi.com",
-            "x-rapidapi-key":
-              "c92cdc6648mshb0dea232c3a695bp184cb1jsn279e6c857a8d"
+            "x-rapidapi-key": "c92cdc6648mshb0dea232c3a695bp184cb1jsn279e6c857a8d",
+
           }
         }
       );
@@ -79,10 +78,10 @@ const Requestor = () => {
           ],
           directions: item.content.preparationSteps
             ? [
-                ...item.content.preparationSteps.map((step, index) => {
-                  return { stepNumber: index, description: step };
-                })
-              ]
+              ...item.content.preparationSteps.map((step, index) => {
+                return { stepNumber: index, description: step };
+              })
+            ]
             : []
         };
 
@@ -118,11 +117,11 @@ const Requestor = () => {
         ) : failed ? (
           <p>Request {count} is failed</p>
         ) : (
-          <p>Request {count} is completed.</p>
-        )
+              <p>Request {count} is completed.</p>
+            )
       ) : (
-        undefined
-      )}
+          undefined
+        )}
       <Button onClick={onClick2}> SEND ALL UNIQUES </Button>
     </div>
   );

@@ -9,9 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/recipe/")
+@RequestMapping("/recipes/")
 public class RecipeController {
     private final RecipeService recipeService;
 
@@ -28,9 +29,10 @@ public class RecipeController {
     }
 
     @PostMapping
-    public ResponseEntity<RecipeResponse> addBook(@RequestBody RecipeRequest req) {
+    public ResponseEntity<RecipeResponse> addRecipe(@RequestBody RecipeRequest req) {
         try {
             RecipeResponse res = new RecipeResponse();
+            System.out.println(req.getRecipeDto().toString());
             res.setRecipeDto(recipeService.addRecipe(req.getRecipeDto()));
             return ResponseEntity.ok(res);
         } catch (Exception e) {

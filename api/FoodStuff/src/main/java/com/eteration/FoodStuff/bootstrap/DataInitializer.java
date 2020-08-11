@@ -18,6 +18,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+    }
+
+    void loadData(){
         Recipe recipe = new Recipe();
         recipe.setTitle("Title");
         recipe.setChefTips("Tips");
