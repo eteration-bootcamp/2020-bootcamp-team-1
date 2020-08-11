@@ -10,22 +10,25 @@ const ProfilePage = () => {
     return (
         <Container className="layout justify-content-center">
             <Container className="mb-3">
-                <Row className="d-flex justify-content-center align-items-center">
-                    <Col xs={4}>
+                <Row className="d-flex align-items-center">
+                    <Col lg={4} md={3} sm={5} xs={5}>
                         <Row>
                             <Col>
                                 <span className={styles.profileImageRounded}>NS</span>
                             </Col>
-                            <Col xs={8} style={{minWidth: 207}}>
+                            <Col style={{minWidth: 200}}>
                                 <p className={styles.nameText}>Name Surname</p>
                             </Col>
                         </Row>
                     </Col>
-                    <Col className={styles.recipesCountBox}>
+                    <Col lg={2} md={3} sm={7} xs={7} className={styles.recipesCountBox}>
                         <u>RECIPES</u>
                         <p>12</p>
                     </Col>
-                    <Col xs={6}>3</Col>
+                    <Col lg={6} md={6} sm={12} xs={12} className={styles.aboutBox}>
+                        <u>ABOUT</u>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur hendrerit tellus vitae aliquam. Mauris faucibus consectetur pretium. Sed fermentum elementum tellus, vel vehicula felis dictum nec.</p>
+                    </Col>
                 </Row>
             </Container>
             <h1>RECIPES</h1>
