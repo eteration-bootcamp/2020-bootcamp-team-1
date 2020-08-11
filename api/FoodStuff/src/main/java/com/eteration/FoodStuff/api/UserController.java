@@ -18,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("{id}")
-    public ResponseEntity<UserResponse> getUser(@PathVariable(name = "{id}") long id) {
+    public ResponseEntity<UserResponse> getUser(@PathVariable(name = "id") long id) {
         try {
             UserResponse res = new UserResponse();
             res.setUserDto(userService.getUser(id));

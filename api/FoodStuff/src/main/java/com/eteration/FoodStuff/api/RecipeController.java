@@ -42,7 +42,7 @@ public class RecipeController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteRecipe(@PathVariable(name = "{id}") long id) {
+    public ResponseEntity deleteRecipe(@PathVariable(name = "id") long id) {
         try {
             recipeService.removeRecipe(id);
             return ResponseEntity.ok(HttpStatus.OK);
