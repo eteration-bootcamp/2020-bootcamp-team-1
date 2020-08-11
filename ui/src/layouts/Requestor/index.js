@@ -1,16 +1,37 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import * as data from "./dummy.json";
+// import * as data from "./dummy.json";
 
 const Requestor = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
 
+  const url = "http://localhost:8080/recipe";
+
   const onClick2 = async () => {
     const items = JSON.parse(localStorage.getItem("itemsArray")) || [];
-    const namesUnique = [...new Set(items.map(item => item.title))];
-    console.log(namesUnique);
+    const uniqueList = [
+      ...new Map(items.map(item => [item.title, item])).values()
+    ];
+    console.log(uniqueList);
+    await Promise.all(
+      uniqueList.map(async (item, index) => {
+        try {
+          // await fetch(url, {
+          //   method: "POST",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //     accept: "application/json"
+          //   },
+          //   body: JSON.stringify(item)
+          // }).then(res => console.log(`${index} sent successfully.`));
+        } catch (error) {
+          console.error(`${index} failed`);
+        }
+        return item;
+      })
+    );
   };
 
   const onClick = async () => {
@@ -102,7 +123,7 @@ const Requestor = () => {
       ) : (
         undefined
       )}
-      <Button onClick={onClick2}> TEST </Button>
+      <Button onClick={onClick2}> SEND ALL UNIQUES </Button>
     </div>
   );
 };
