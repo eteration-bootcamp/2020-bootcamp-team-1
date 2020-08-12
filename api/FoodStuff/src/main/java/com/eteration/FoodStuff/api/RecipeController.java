@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/recipes/")
 public class RecipeController {
     private final RecipeService recipeService;
-
     @GetMapping
     public ResponseEntity<RecipeListResponse> getRecipes() {
         try {
@@ -42,7 +41,6 @@ public class RecipeController {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
-
     @PostMapping
     public ResponseEntity<RecipeResponse> addRecipe(@RequestBody RecipeRequest req) {
         try {
@@ -53,7 +51,6 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
     @DeleteMapping("{id}")
     public ResponseEntity deleteRecipe(@PathVariable(name = "id") long id) {
         try {
@@ -61,6 +58,17 @@ public class RecipeController {
             return ResponseEntity.ok(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<RecipeListResponse> getRecipesByUserId(@PathVariable(name = "userId") long userId) {
+        try {
+            RecipeListResponse res = new RecipeListResponse();
+            res.setRecipeList(recipeService.getListByUserId(userId));
+            return ResponseEntity.ok(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 }

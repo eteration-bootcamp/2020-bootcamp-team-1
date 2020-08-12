@@ -5,7 +5,8 @@ import java.util.List;
 
 public interface RecipeService {
     RecipeDto addRecipe(RecipeDto recipeDto);
-    List<RecipeDto> getList();
     RecipeDto getRecipe(long id);
     void removeRecipe(long id);
+    List<RecipeDto> getList();
+    List<RecipeDto> getListByUserId(long userId);
 }

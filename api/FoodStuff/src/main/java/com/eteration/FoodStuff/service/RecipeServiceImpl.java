@@ -19,12 +19,14 @@ public class RecipeServiceImpl implements RecipeService {
     public RecipeDto addRecipe(RecipeDto recipeDto) {
         return recipeMapper.toRecipeDto(recipeRepository.save(recipeMapper.toRecipe(recipeDto)));
     }
-
     @Override
     public List<RecipeDto> getList() {
         return recipeMapper.toRecipeDtoList(recipeRepository.findAll());
     }
-
+    @Override
+    public List<RecipeDto> getListByUserId(long userId) {
+        return recipeMapper.toRecipeDtoList(recipeRepository.findAllByUserId(userId));
+    }
     @Override
     public RecipeDto getRecipe(long id) {
         return recipeMapper.toRecipeDto(recipeRepository
