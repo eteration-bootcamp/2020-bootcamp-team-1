@@ -1,19 +1,24 @@
 import React from "react";
+import { ErrorMessage } from "@hookform/error-message";
+import Form from "react-bootstrap/Form";
+import { ctipName } from "./postFieldNames";
 
-const ChefTipsField = () => {
-  return <div></div>;
-  //   <Form.Control
-  //         className="mb-5 mx-2"
-  //         as="textarea"
-  //         rows="3"
-  //         name="name"
-  //         placeholder="Chef Tips"
-  //         isInvalid={errors.n}
-  //         ref={register({
-  //           required: "Title is required",
-  //           validate: value => true || "Password must be 3 characters at minimum"
-  //         })}
-  //       />
+const ChefTipsField = ({ register, errors }) => {
+  return (
+    <Form.Group>
+      <Form.Control
+        className="mb-5 mx-2"
+        as="textarea"
+        isInvalid={errors[ctipName]}
+        rows="3"
+        name={ctipName}
+        placeholder="Chef Tips"
+        isInvalid={errors[ctipName]}
+        ref={register}
+      />
+      <ErrorMessage errors={errors} name={ctipName} />
+    </Form.Group>
+  );
 };
 
 export default ChefTipsField;

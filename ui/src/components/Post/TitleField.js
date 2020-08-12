@@ -1,22 +1,22 @@
 import React from "react";
+import { ErrorMessage } from "@hookform/error-message";
+import Form from "react-bootstrap/Form";
+import { titleName } from "./postFieldNames";
 
-const TitleField = () => {
-  return <div></div>;
-  //   <Form.Group>
-  //         <Form.Control
-  //           name="name"
-  //           placeholder="Title of your recipé"
-  //           size="lg"
-  //           isInvalid={errors.n}
-  //           ref={register({
-  //             required: "Title is required",
-  //             validate: value =>
-  //               true || "Password must be 3 characters at minimum"
-  //           })}
-  //           style={{ fontWeight: 700, fontSize: "32px" }}
-  //         />
-  //         {/* <FieldError/> */}
-  //       </Form.Group>;
+const TitleField = ({ register, errors }) => {
+  return (
+    <Form.Group>
+      <Form.Control
+        name={titleName}
+        placeholder="Title of your recipé"
+        size="lg"
+        isInvalid={errors[titleName]}
+        ref={register}
+        style={{ fontWeight: 700, fontSize: "32px" }}
+      />
+      <ErrorMessage errors={errors} name={titleName} />
+    </Form.Group>
+  );
 };
 
 export default TitleField;
