@@ -4,12 +4,17 @@ import Fab from "../common/Fab";
 
 const ActionButton = ({ isLoggedIn, onClick, isPost }) => {
   return (
-    <Fragment>
-      <Button className="mr-3 hide-below-medium" onClick={onClick}>
+    <div className="d-flex justify-content-center">
+      <Button
+        className="mr-3 hide-below-medium"
+        style={isPost ? { maxWidth: "40vw" , marginBottom:"10vh"} : undefined}
+        block={isPost}
+        onClick={onClick}
+      >
         {isLoggedIn ? (isPost ? "Save" : "Create New Recipe") : "Join"}
       </Button>
       {isLoggedIn && <Fab type={isPost ? "post" : "plus"} onClick={onClick} />}
-    </Fragment>
+    </div>
   );
 };
 
