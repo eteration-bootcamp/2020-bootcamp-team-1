@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import Searchbar from "../common/Searchbar";
 import JoinModal from "../modals/JoinModal";
 import ActionButton from "../ActionButton";
+import Avatar from "../common/Avatar";
 
 const Nav = ({ history }) => {
   const {
@@ -17,7 +18,7 @@ const Nav = ({ history }) => {
   const [showModal, setShowModal] = useState(false);
 
   const onClick = () => {
-    if (1 === 1) {
+    if (1 === 0) {
       // user not logged in
       setShowModal(true);
       console.log("OK");
@@ -42,11 +43,10 @@ const Nav = ({ history }) => {
         <h3 className={styles.BrandName}>Foodstuff</h3>
       </Link>
       <Searchbar />
-      <ActionButton
-        isLoggedIn={false}
-        onClick={onClick}
-        isPost={pathname === "/new"}
-      />
+      {pathname !== "/new" && (
+        <ActionButton isLoggedIn={true} onClick={onClick} />
+      )}
+      {<Avatar name="Tarık Köprülü" />}
       <JoinModal onClose={() => setShowModal(false)} showModal={showModal} />
     </Navbar>
   );

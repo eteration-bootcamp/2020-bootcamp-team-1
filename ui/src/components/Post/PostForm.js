@@ -1,46 +1,112 @@
-import React from "react";
-import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
-import {
-  useForm,
-  useFieldArray,
-  Controller,
-  FieldError
-} from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import styles from "./Post.module.css";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers";
+
 import ImageDrop from "./ImageDrop";
 import IngredientsField from "./IngredientsField";
 import DirectionsField from "./DirectionsField";
 import TimeAndServeField from "./TimeAndServeField";
 import ChefTipsField from "./ChefTipsField";
 import DescriptionField from "./DescriptionField";
+import TitleField from "./TitleField";
+import ActionButton from "../ActionButton";
+import {
+  ctipName,
+  descName,
+  dirsName,
+  imgName,
+  ingName,
+  servName,
+  timeName,
+  titleName
+} from "./postFieldNames";
 
 const PostForm = () => {
-  const { register, errors, handleSubmit, control } = useForm();
+  const reqMsg = "Required";
 
-  const fieldArrayHook = useFieldArray({
-    control,
-    name: "deneme"
+  const [img, setImg] = useState(null);
+
+  const maxMsg = max => `Must be lower than ${max} characters`;
+
+  const PostSchema = yup.object().shape({
+    [ctipName]: yup.string().max(50),
+    [descName]: yup
+      .string()
+      .required(reqMsg)
+      .max(200, maxMsg(200)),
+    [servName]: yup
+      .string()
+      .required(reqMsg)
+      .max(50, maxMsg(50)),
+    [timeName]: yup
+      .string()
+      .required(reqMsg)
+      .max(50, maxMsg(50)),
+    [titleName]: yup
+      .string()
+      .required(reqMsg)
+      .max(100, maxMsg(100))
   });
 
+  const {
+    register,
+    errors,
+    handleSubmit,
+    control,
+    formState,
+    getValues,
+    setValue
+  } = useForm({ resolver: yupResolver(PostSchema) });
+
+  const ingredientArray = useFieldArray({ control, name: ingName });
+
+  const directionArray = useFieldArray({ control, name: dirsName });
+
   const onSubmit = values => {
-    console.log(values);
+    const newValues = {
+      ...values,
+      ...(img && { [imgName]: img.base64 }),
+      directions: [
+        ...values.directions.map((direction, index) => {
+          return { ...direction, stepNumber: index + 1 };
+        })
+      ]
+    };
+    if (img) {
+    }
+    console.log(newValues);
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <DescriptionField />
-      <ImageDrop />
-      <div className="divider" />
-      <TimeAndServeField />
-      <div className="divider" />
-      <IngredientsField />
-      <div className="divider mt-4" />
-      <DirectionsField />
-      <ChefTipsField />
-    </Form>
+    <div>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <TitleField errors={errors} register={register} />
+        <DescriptionField register={register} errors={errors} />
+        <ImageDrop onImgDrop={setImg} image={img} />
+        <div className="divider" />
+        <TimeAndServeField register={register} errors={errors} />
+        <div className="divider" />
+        <IngredientsField
+          register={register}
+          useFieldArray={ingredientArray}
+          setValue={setValue}
+        />
+        <div className="divider mt-4" />
+        <DirectionsField
+          register={register}
+          useFieldArray={directionArray}
+          setValue={setValue}
+        />
+        <ChefTipsField register={register} errors={errors} />
+        <ActionButton
+          isLoggedIn={true}
+          isPost={true}
+          onClick={handleSubmit(onSubmit)}
+        />
+      </Form>
+    </div>
   );
 };
 

@@ -1,23 +1,22 @@
 import React from "react";
+import { ErrorMessage } from "@hookform/error-message";
+import Form from "react-bootstrap/Form";
+import { descName } from "./postFieldNames";
 
-const DescriptionField = () => {
+const DescriptionField = ({ register, errors }) => {
   return (
-    <div></div>
-    // <Form.Group>
-    //   <Form.Control
-    //     as="textarea"
-    //     rows="3"
-    //     name="name"
-    //     placeholder="Tell us about your recipe"
-    //     isInvalid={errors.n}
-    //     ref={register({
-    //       required: "Title is required",
-    //       validate: value => true || "Password must be 3 characters at minimum"
-    //     })}
-    //     style={{ fontSize: "1.2rem" }}
-    //   />
-    //   {/* <FieldError/> */}
-    // </Form.Group>
+    <Form.Group>
+      <Form.Control
+        as="textarea"
+        rows="3"
+        name={descName}
+        isInvalid={errors[descName]}
+        placeholder="Tell us about your recipe"
+        ref={register}
+        style={{ fontSize: "1.2rem" }}
+      />
+      <ErrorMessage errors={errors} name={descName} />
+    </Form.Group>
   );
 };
 
