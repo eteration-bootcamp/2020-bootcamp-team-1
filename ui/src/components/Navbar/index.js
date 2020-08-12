@@ -18,7 +18,7 @@ const Nav = ({ history }) => {
   const [showModal, setShowModal] = useState(false);
 
   const onClick = () => {
-    if (1 === 0) {
+    if (1 === 1) {
       // user not logged in
       setShowModal(true);
       console.log("OK");
@@ -44,7 +44,7 @@ const Nav = ({ history }) => {
       </Link>
       <Searchbar />
       {pathname !== "/new" && (
-        <ActionButton isLoggedIn={true} onClick={onClick} />
+        <ActionButton isLoggedIn={false} onClick={onClick} />
       )}
       {<Avatar name="Tarık Köprülü" />}
       <JoinModal onClose={() => setShowModal(false)} showModal={showModal} />
