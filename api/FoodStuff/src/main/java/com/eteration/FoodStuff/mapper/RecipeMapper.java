@@ -2,9 +2,7 @@ package com.eteration.FoodStuff.mapper;
 
 import com.eteration.FoodStuff.dto.RecipeDto;
 import com.eteration.FoodStuff.model.Recipe;
-import org.mapstruct.IterableMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Named;
+import org.mapstruct.*;
 
 import java.util.List;
 

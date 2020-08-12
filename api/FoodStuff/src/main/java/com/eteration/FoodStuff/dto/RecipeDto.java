@@ -1,10 +1,7 @@
 package com.eteration.FoodStuff.dto;
 
 import com.eteration.FoodStuff.model.Ingredient;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import javax.persistence.Lob;
 import java.util.List;
 
@@ -20,6 +17,7 @@ public class RecipeDto extends BaseDto {
     private String serving;
     @Lob
     private String chefTips;
+    @Lob
     private String image;
     private UserDto user;
     private List<Ingredient> ingredients;

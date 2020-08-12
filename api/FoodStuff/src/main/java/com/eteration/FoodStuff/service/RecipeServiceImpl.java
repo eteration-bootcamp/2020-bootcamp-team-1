@@ -2,7 +2,6 @@ package com.eteration.FoodStuff.service;
 
 import com.eteration.FoodStuff.dto.RecipeDto;
 import com.eteration.FoodStuff.mapper.RecipeMapper;
-import com.eteration.FoodStuff.model.Recipe;
 import com.eteration.FoodStuff.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,8 +26,16 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public RecipeDto getRecipe(long id) {
+        return recipeMapper.toRecipeDto(recipeRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recipe : " + id + "does not exist !")));
+    }
+    @Override
     public void removeRecipe(long id) {
-        Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Recipe : " + id + "does not exist !"));
-        recipeRepository.delete(recipe);
+        recipeRepository
+                .delete(recipeRepository
+                        .findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Recipe : " + id + "does not exist !")));
     }
 }

@@ -23,8 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser(long userId) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User : " + userId + "does not exist !"));
-        return userMapper.toUserDto(userDb);
+        return userMapper
+                .toUserDto(userRepository
+                        .findById(userId)
+                        .orElseThrow(() -> new IllegalArgumentException("User : " + userId + "does not exist !")));
     }
 
     @Override

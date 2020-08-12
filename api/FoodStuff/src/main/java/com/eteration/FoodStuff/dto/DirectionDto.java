@@ -1,9 +1,6 @@
 package com.eteration.FoodStuff.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Lob;
 
@@ -14,5 +11,4 @@ public class DirectionDto extends  BaseDto {
     private byte stepNumber;
     @Lob
     private String description;
-   //private RecipeDto recipe;
 }

@@ -1,13 +1,12 @@
 package com.eteration.FoodStuff.dto;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties("password")
 public class UserDto  extends  BaseDto {
     private String username;
     private String email;

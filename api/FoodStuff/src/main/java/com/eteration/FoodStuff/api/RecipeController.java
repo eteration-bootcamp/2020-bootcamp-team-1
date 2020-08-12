@@ -1,9 +1,13 @@
 package com.eteration.FoodStuff.api;
 
+
 import com.eteration.FoodStuff.request.RecipeRequest;
 import com.eteration.FoodStuff.response.RecipeListResponse;
 import com.eteration.FoodStuff.response.RecipeResponse;
+import com.eteration.FoodStuff.response.UserResponse;
 import com.eteration.FoodStuff.service.RecipeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,19 +31,28 @@ public class RecipeController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping("{id}")
+    public ResponseEntity<RecipeResponse> getRecipe(@PathVariable(name = "id") long id) {
+        try {
+            RecipeResponse res = new RecipeResponse();
+            res.setRecipeDto(recipeService.getRecipe(id));
+            return ResponseEntity.ok(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+    }
 
     @PostMapping
     public ResponseEntity<RecipeResponse> addRecipe(@RequestBody RecipeRequest req) {
         try {
             RecipeResponse res = new RecipeResponse();
-            System.out.println(req.getRecipeDto().toString());
             res.setRecipeDto(recipeService.addRecipe(req.getRecipeDto()));
             return ResponseEntity.ok(res);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 
     @DeleteMapping("{id}")
     public ResponseEntity deleteRecipe(@PathVariable(name = "id") long id) {
