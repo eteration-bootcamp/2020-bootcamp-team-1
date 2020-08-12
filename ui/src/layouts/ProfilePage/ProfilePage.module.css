@@ -43,19 +43,29 @@
 
 .recipesCountBox {
     min-width: 116px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 10px;
     font-weight: bold;
 }
 
 .recipesCountBox u {
     font-size: 18px;
+    display: block;
+    text-align: center;
 }
 
 .recipesCountBox p {
     font-size: 36px;
     margin-top: -10px;
+    text-align: center;
+}
+
+.aboutBox {
+    margin-top: 10px;
+}
+
+.aboutBox u {
+    font-size: 18px;
+    font-weight: bold;
 }
   
 @media (min-width: 800px) {

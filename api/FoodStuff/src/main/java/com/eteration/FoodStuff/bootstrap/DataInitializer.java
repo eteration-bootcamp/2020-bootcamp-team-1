@@ -3,6 +3,7 @@ package com.eteration.FoodStuff.bootstrap;
 import com.eteration.FoodStuff.model.Direction;
 import com.eteration.FoodStuff.model.Ingredient;
 import com.eteration.FoodStuff.model.Recipe;
+import com.eteration.FoodStuff.model.User;
 import com.eteration.FoodStuff.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        loadData();
     }
 
     void loadData(){
@@ -53,8 +54,14 @@ public class DataInitializer implements CommandLineRunner {
         direction_2.setDescription("Direction-2");
         directions.add(direction_1);
         directions.add(direction_2);
-
         recipe.setDirections(directions);
+
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword("123");
+        user.setAbout("bla bla");
+        user.setEmail("admin@admin.com");
+        recipe.setUser(user);
 
         Recipe recipe1 = recipeRepository.save(recipe);
         System.out.println(recipe1);

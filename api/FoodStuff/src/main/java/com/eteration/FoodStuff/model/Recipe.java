@@ -1,6 +1,5 @@
 package com.eteration.FoodStuff.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,28 +12,29 @@ import java.util.List;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Recipe extends BaseEntity {
-    @Column
+    @Column(nullable = true)
     private String title;
 
-    @Column
+    @Lob
+    @Column(nullable = true)
     private String description;
 
-    @Column
+    @Column(nullable = true)
     private String prepTime;
 
-    @Column
+    @Column(nullable = true)
     private String serving;
 
-    @Column
+    @Lob
+    @Column(nullable = true)
     private String chefTips;
 
-    @Column
+    @Column(nullable = true)
     private String image;
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = Ingredient.class)
