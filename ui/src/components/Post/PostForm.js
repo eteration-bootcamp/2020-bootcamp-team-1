@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import * as yup from "yup";
@@ -25,6 +25,8 @@ import {
 
 const PostForm = () => {
   const reqMsg = "Required";
+
+  const [img, setImg] = useState(null);
 
   const maxMsg = max => `Must be lower than ${max} characters`;
 
@@ -65,12 +67,15 @@ const PostForm = () => {
   const onSubmit = values => {
     const newValues = {
       ...values,
+      ...(img && { [imgName]: img.base64 }),
       directions: [
         ...values.directions.map((direction, index) => {
           return { ...direction, stepNumber: index + 1 };
         })
       ]
     };
+    if (img) {
+    }
     console.log(newValues);
   };
 
@@ -79,7 +84,7 @@ const PostForm = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <TitleField errors={errors} register={register} />
         <DescriptionField register={register} errors={errors} />
-        <ImageDrop register={register} errors={errors} />
+        <ImageDrop onImgDrop={setImg} image={img} />
         <div className="divider" />
         <TimeAndServeField register={register} errors={errors} />
         <div className="divider" />
