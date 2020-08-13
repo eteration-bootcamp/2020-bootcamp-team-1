@@ -1,12 +1,19 @@
 import React from "react";
-import styles from "../Common.module.css";
-import TimerSvg from "../../svgs/TimerSvg";
 import Card from "react-bootstrap/Card";
 import Ellipsis from "react-ellipsis-pjs";
+import { withRouter } from "react-router-dom";
+import styles from "../Common.module.css";
+import TimerSvg from "../../svgs/TimerSvg";
 
-const RecipeCard = ({ item: { title, prepTime, description, image } }) => {
+const RecipeCard = ({
+  item: { title, prepTime, description, image },
+  history: { push }
+}) => {
+  
+  const onCardClick = () => push("/recipe/1");
+
   return (
-    <Card className={styles.Card+" cursor-hover"}>
+    <Card className={styles.Card + " cursor-hover"} onClick={onCardClick}>
       <Card.Img variant="top" src={image} className={styles.CardImage} />
       <Card.Body>
         <Ellipsis
@@ -28,4 +35,4 @@ const RecipeCard = ({ item: { title, prepTime, description, image } }) => {
   );
 };
 
-export default RecipeCard;
+export default withRouter(RecipeCard);

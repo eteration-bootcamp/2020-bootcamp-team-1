@@ -25,7 +25,7 @@ const DirectionsField = ({ register, useFieldArray, setValue }) => {
         <h3 className="d-inline-block m-0">Directions</h3>
         <Button
           className="btn-secondary ml-3 py-1"
-          onClick={() => append({})}
+          onClick={() => fields.length < 30 && append({})}
           style={{ padding: "5px 12px" }}
         >
           +
@@ -57,14 +57,16 @@ const DirectionsField = ({ register, useFieldArray, setValue }) => {
                       placeholder={`Step ${index + 1}`}
                       ref={register()}
                     />
-                    <Button
-                      className="btn-secondary ml-3 py-1"
-                      onClick={() => remove(index)}
-                      style={{ padding: "2px 13px" }}
-                      tabIndex={-1}
-                    >
-                      x
-                    </Button>
+                    {fields.length > 1 && (
+                      <Button
+                        className="btn-secondary ml-3 py-1"
+                        onClick={() => remove(index)}
+                        style={{ padding: "2px 13px" }}
+                        tabIndex={-1}
+                      >
+                        x
+                      </Button>
+                    )}
                   </Form.Group>
                 )}
               </Draggable>

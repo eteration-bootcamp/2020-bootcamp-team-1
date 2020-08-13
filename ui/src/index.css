@@ -13,6 +13,10 @@ code {
     monospace;
 }
 
+textarea {
+  resize: none;
+}
+
 .layout {
   margin-top: 66px;
 }
