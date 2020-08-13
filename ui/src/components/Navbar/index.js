@@ -46,7 +46,7 @@ const Nav = ({ history }) => {
       {pathname !== "/new" && (
         <ActionButton isLoggedIn={false} onClick={onClick} />
       )}
-      {<Avatar name="Tarık Köprülü" />}
+      {/* {<Avatar name="Tarık Köprülü" />} */}
       <JoinModal onClose={() => setShowModal(false)} showModal={showModal} />
     </Navbar>
   );

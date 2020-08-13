@@ -25,7 +25,7 @@ const IngredientsField = ({ register, useFieldArray }) => {
       <Row className="mx-2 mt-3">
         <h3 className="d-inline-block m-0">Ingredients</h3>
         <Button
-          onClick={() => append({})}
+          onClick={() => fields.length < 50 && append({})}
           className="btn-secondary ml-3 py-1"
           style={{ padding: "5px 12px" }}
         >
@@ -55,14 +55,16 @@ const IngredientsField = ({ register, useFieldArray }) => {
                       // isInvalid={errors[`ingredient${item.id}`]}
                       ref={register()}
                     />
-                    <Button
-                      className="btn-secondary ml-3 py-1"
-                      style={{ padding: "2px 13px" }}
-                      onClick={() => remove(index)}
-                      tabIndex={-1}
-                    >
-                      x
-                    </Button>
+                    {fields.length > 1 && (
+                      <Button
+                        className="btn-secondary ml-3 py-1"
+                        style={{ padding: "2px 13px" }}
+                        onClick={() => remove(index)}
+                        tabIndex={-1}
+                      >
+                        x
+                      </Button>
+                    )}
                   </Form.Group>
                 )}
               </Draggable>
