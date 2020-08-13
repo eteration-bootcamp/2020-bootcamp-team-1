@@ -8,6 +8,7 @@ import PostPage from "./layouts/PostPage";
 import ProfilePage from "./layouts/ProfilePage";
 import Navbar from "./components/Navbar";
 import Requestor from "./layouts/Requestor";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           );
         }}
       ></Route>
+      <Footer />
     </Fragment>
   );
 }

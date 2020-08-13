@@ -6,8 +6,8 @@ const ActionButton = ({ isLoggedIn, onClick, isPost }) => {
   return (
     <div className="d-flex justify-content-center">
       <Button
-        className="mr-3 hide-below-medium"
-        style={isPost ? { maxWidth: "40vw" , marginBottom:"10vh"} : undefined}
+        className={isLoggedIn ? "mr-3 hide-below-medium" : undefined}
+        style={isPost ? { maxWidth: "40vw", marginBottom: "10vh" } : undefined}
         block={isPost}
         onClick={onClick}
       >

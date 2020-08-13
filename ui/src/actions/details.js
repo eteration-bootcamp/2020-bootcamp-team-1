@@ -1,0 +1,1 @@
+import { GET_DETAILS, GET_DETAILS_FAIL, GET_DETAILS_SUCCESS } from "./types";
