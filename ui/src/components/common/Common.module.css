@@ -14,11 +14,45 @@
   padding-right: 36px;
 }
 
+.SearchResults {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  top: 30px;
+  left: 0;
+}
+
+.SearchResultItem:hover,
+.SearchResultItem:active {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.SearchResultItem img {
+  max-width: 60px;
+  height: calc(60 * 0.7);
+  object-fit: cover;
+}
+
+.SearchResultItem p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .SearchIcon {
   position: absolute;
   right: 10px;
   top: 20%;
   bottom: 20%;
+}
+
+.Spinner {
+  top: 30%;
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  border-width: 1.4px;
+  color: #767676;
 }
 
 /* AVATAR STYLES */
