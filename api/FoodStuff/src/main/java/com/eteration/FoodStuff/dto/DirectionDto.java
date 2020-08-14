@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Lob;
 
+@EqualsAndHashCode(callSuper=false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

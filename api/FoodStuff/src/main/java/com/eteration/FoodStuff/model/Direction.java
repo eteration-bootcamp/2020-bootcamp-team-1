@@ -17,7 +17,6 @@ public class Direction extends BaseEntity {
     @Lob
     @Column(nullable = true)
     private String description;
-
     @ManyToOne(cascade = CascadeType.ALL,targetEntity = Recipe.class)
     private Recipe recipe;
 }
