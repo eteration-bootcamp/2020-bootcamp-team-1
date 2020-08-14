@@ -6,19 +6,27 @@ import ChefTips from "./ChefTips";
 import TimeAndServe from "./TimeAndServe";
 import Container from "react-bootstrap/Container";
 
-const DetailsBody = () => {
+const DetailsBody = ({
+  title,
+  description,
+  prepTime,
+  serving,
+  ingredients,
+  directions,
+  chefTips
+}) => {
   return (
     <Container>
-      <h2 className="mt-2">Title</h2>
-      <p style={{ fontSize: "1.1rem", color: "#888" }}>Description</p>
+      <h2 className="mt-2">{title}</h2>
+      <p style={{ fontSize: "1.1rem", color: "#888" }}>{description}</p>
       <div className="divider" />
-      <TimeAndServe />
+      <TimeAndServe time={prepTime} servings={serving} />
       <div className="divider" />
-      <Ingredients />
+      <Ingredients ingredients={ingredients} />
       <div className="divider" />
-      <Directions />
+      <Directions directions={directions} />
       <div className="divider" />
-      <ChefTips />
+      <ChefTips tips={chefTips} />
     </Container>
   );
 };

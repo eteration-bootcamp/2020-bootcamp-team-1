@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import NotFoundSvg from "../../components/svgs/NotFoundSvg";
-import Button from "react-bootstrap/Button";
 import BackButton from "../../components/common/BackButton";
 
 const NotFound = () => {

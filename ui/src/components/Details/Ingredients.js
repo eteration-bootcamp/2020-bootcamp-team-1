@@ -1,7 +1,7 @@
 import React from "react";
 import IngredientItem from "./IngredientItem";
 
-const Ingredients = () => {
+const Ingredients = ({ ingredients }) => {
   return (
     <div className="mt-3">
       <h4 className="mb-3">Ingredients</h4>

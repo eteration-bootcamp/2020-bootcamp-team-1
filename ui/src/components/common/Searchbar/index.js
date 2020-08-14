@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
-import Modal from "react-bootstrap/Modal";
 import Spinner from "react-bootstrap/Spinner";
 import styles from "../Common.module.css";
 import SearchResults from "./SearchResults";

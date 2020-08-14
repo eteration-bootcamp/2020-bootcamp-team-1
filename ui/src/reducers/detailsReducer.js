@@ -1,8 +1,8 @@
-import {
-  GET_DETAILS,
-  GET_DETAILS_FAIL,
-  GET_DETAILS_SUCCESS
-} from "../actions/types";
+// import {
+//   GET_DETAILS,
+//   GET_DETAILS_FAIL,
+//   GET_DETAILS_SUCCESS
+// } from "../actions/types";
 
 const initialState = {};
 

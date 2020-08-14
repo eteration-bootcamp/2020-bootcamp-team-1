@@ -1,17 +1,16 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import styles from "./Post.module.css";
-import { ingName } from "./postFieldNames";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const IngredientsField = ({ register, useFieldArray }) => {
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray;
+  const { fields, append, remove, move } = useFieldArray;
 
   useEffect(() => {
     append({});
-  }, []);
+  }, [append]);
 
   return (
     <DragDropContext

@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
-// import { ErrorMessage } from "@hookform/error-message";
 import styles from "./Post.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
-import { dirsName } from "./postFieldNames";
 import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd";
 
-const DirectionsField = ({ register, useFieldArray, setValue }) => {
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray;
+const DirectionsField = ({ register, useFieldArray }) => {
+  const { fields, append, remove, move } = useFieldArray;
   useEffect(() => {
     append({});
-  }, []);
+  }, [append]);
 
   return (
     <DragDropContext

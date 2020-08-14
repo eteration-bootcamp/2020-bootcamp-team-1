@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "./Navbar.module.css";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Searchbar from "../common/Searchbar";
 import JoinModal from "../modals/JoinModal";
 import ActionButton from "../ActionButton";
 import Avatar from "../common/Avatar";
+import Brand from "./Brand";
 
 const Nav = ({ history }) => {
   const {
@@ -23,6 +24,7 @@ const Nav = ({ history }) => {
       setShowModal(true);
       console.log("OK");
     } else if (pathname === "/new") alert("OK");
+    // will create a post request ?
     else push("/new");
   };
 
@@ -34,14 +36,7 @@ const Nav = ({ history }) => {
       className={styles.Navbar}
       variant="dark"
     >
-      <Link to="/" className="d-flex align-items-center text-decoration-none">
-        <img
-          alt=""
-          className={styles.BrandLogo}
-          src={require("../../assets/images/cook-icon.jpg")}
-        />
-        <h3 className={styles.BrandName}>Foodstuff</h3>
-      </Link>
+      <Brand />
       <Searchbar />
       {pathname !== "/new" && (
         <ActionButton isLoggedIn={false} onClick={onClick} />
