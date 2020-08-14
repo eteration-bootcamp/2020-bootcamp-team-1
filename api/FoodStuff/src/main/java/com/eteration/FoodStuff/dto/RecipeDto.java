@@ -6,6 +6,7 @@ import javax.persistence.Lob;
 import java.util.List;
 
 
+@EqualsAndHashCode(callSuper=false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

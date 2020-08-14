@@ -1,11 +1,12 @@
 package com.eteration.FoodStuff.api;
 
-import com.eteration.FoodStuff.dto.LoginDto;
-import com.eteration.FoodStuff.dto.RegistrationDto;
-import com.eteration.FoodStuff.dto.RegistrationResultDto;
 import com.eteration.FoodStuff.dto.TokenDto;
 import com.eteration.FoodStuff.model.User;
 import com.eteration.FoodStuff.repository.UserRepository;
+import com.eteration.FoodStuff.request.LoginRequest;
+import com.eteration.FoodStuff.request.RegistrationRequest;
+import com.eteration.FoodStuff.response.LoginResponse;
+import com.eteration.FoodStuff.response.RegistrationResponse;
 import com.eteration.FoodStuff.security.JwtTokenUtil;
 import com.eteration.FoodStuff.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -29,17 +30,16 @@ public class AccountController {
     private final UserServiceImpl userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<TokenDto> login(@RequestBody LoginDto request) throws AuthenticationException {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        final User user = userRepository.findByUsername(request.getUsername());
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req) throws AuthenticationException {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getLoginDto().getUsername(), req.getLoginDto().getPassword()));
+        final User user = userRepository.findByUsername(req.getLoginDto().getUsername());
         final String token = jwtTokenUtil.generateToken(user);
         final long id = user.getId();
-
-        return ResponseEntity.ok(new TokenDto(id,user.getUsername(), token));
+        return ResponseEntity.ok(new LoginResponse(new TokenDto(id,user.getUsername(), token)));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<RegistrationResultDto> register(@RequestBody RegistrationDto registrationDto) throws AuthenticationException {
-        return ResponseEntity.ok(userService.register(registrationDto));
+    public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest req) throws AuthenticationException {
+        return ResponseEntity.ok(userService.register(req.getRegistrationDto()));
     }
 }

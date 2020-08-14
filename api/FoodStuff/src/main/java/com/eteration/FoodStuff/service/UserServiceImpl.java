@@ -1,11 +1,11 @@
 package com.eteration.FoodStuff.service;
 
 import com.eteration.FoodStuff.dto.RegistrationDto;
-import com.eteration.FoodStuff.dto.RegistrationResultDto;
 import com.eteration.FoodStuff.dto.UserDto;
 import com.eteration.FoodStuff.mapper.UserMapper;
 import com.eteration.FoodStuff.model.User;
 import com.eteration.FoodStuff.repository.UserRepository;
+import com.eteration.FoodStuff.response.RegistrationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(userRepository.save(userDb));
     }
 
-    public RegistrationResultDto register(RegistrationDto registrationDTO) {
+    public RegistrationResponse register(RegistrationDto registrationDTO) {
         try {
             if (true){
                 User user = new User();
@@ -53,13 +53,12 @@ public class UserServiceImpl implements UserService {
                 user.setUsername(registrationDTO.getUsername());
                 user.setPassword(bCryptPasswordEncoder.encode(registrationDTO.getPassword()));
                 userRepository.save(user);
-                return new RegistrationResultDto("succes", true);
+                return new RegistrationResponse("succes", true);
             }else{
-                return new RegistrationResultDto("unsucces this record is available ", false);
+                return new RegistrationResponse("unsucces this record is available ", false);
             }
         } catch (Exception e) {
-
-            return new RegistrationResultDto("unsucces", false);
+            return new RegistrationResponse("unsucces", false);
         }
     }
 
