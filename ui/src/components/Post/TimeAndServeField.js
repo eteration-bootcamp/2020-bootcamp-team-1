@@ -11,11 +11,7 @@ const TimeAndServeField = ({ register, errors }) => {
           name={timeName}
           placeholder="Cooking time"
           isInvalid={errors[timeName]}
-          ref={register({
-            required: "Cooking time is required",
-            validate: value =>
-              true || "Password must be 3 characters at minimum"
-          })}
+          ref={register}
           style={{ fontSize: "1.1rem" }}
         />
         <ErrorMessage name={timeName} errors={errors} />
@@ -25,11 +21,7 @@ const TimeAndServeField = ({ register, errors }) => {
           name={servName}
           placeholder="Servings"
           isInvalid={errors[servName]}
-          ref={register({
-            required: "Serving info is required",
-            validate: value =>
-              true || "Password must be 3 characters at minimum"
-          })}
+          ref={register}
           style={{ fontSize: "1.1rem" }}
         />
         <ErrorMessage name={servName} errors={errors} />

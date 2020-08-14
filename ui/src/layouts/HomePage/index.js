@@ -5,7 +5,7 @@ import { Feed } from "../../components/Home";
 const HomePage = () => {
   return (
     <Container className="layout justify-content-center">
-      <Feed />
+      <Feed recipes={[]} />
     </Container>
   );
 };

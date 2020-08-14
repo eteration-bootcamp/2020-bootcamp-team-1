@@ -37,7 +37,7 @@ const SearchResults = ({ setVisibility, visible, loading }) => {
             }
           >
             <span>
-              <img src={tempImg} />
+              <img alt="" src={tempImg} />
             </span>
             <p className="d-inline-block m-0 ml-2">Food Item 1</p>
           </div>
@@ -47,7 +47,7 @@ const SearchResults = ({ setVisibility, visible, loading }) => {
             }
           >
             <span>
-              <img src={tempImg} />
+              <img alt="" src={tempImg} />
             </span>
             <p className="d-inline-block m-0 ml-2">Food Item 2</p>
           </div>
@@ -57,7 +57,7 @@ const SearchResults = ({ setVisibility, visible, loading }) => {
             }
           >
             <span>
-              <img src={tempImg} />
+              <img alt="" src={tempImg} />
             </span>
             <p className="d-inline-block m-0 ml-2">Food Item 3</p>
           </div>

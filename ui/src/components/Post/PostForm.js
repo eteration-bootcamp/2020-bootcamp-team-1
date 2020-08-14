@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
@@ -55,8 +55,6 @@ const PostForm = () => {
     errors,
     handleSubmit,
     control,
-    formState,
-    getValues,
     setValue
   } = useForm({ resolver: yupResolver(PostSchema) });
 
@@ -74,8 +72,6 @@ const PostForm = () => {
         })
       ]
     };
-    if (img) {
-    }
     console.log(newValues);
   };
 
