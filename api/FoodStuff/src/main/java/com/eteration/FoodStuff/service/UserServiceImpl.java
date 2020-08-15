@@ -47,16 +47,16 @@ public class UserServiceImpl implements UserService {
 
     public RegistrationResponse register(RegistrationDto registrationDTO) {
         try {
-            if (true){
+            //if (true){
                 User user = new User();
                 user.setEmail(registrationDTO.getEmail());
                 user.setUsername(registrationDTO.getUsername());
                 user.setPassword(bCryptPasswordEncoder.encode(registrationDTO.getPassword()));
                 userRepository.save(user);
                 return new RegistrationResponse("succes", true);
-            }else{
-                return new RegistrationResponse("unsucces this record is available ", false);
-            }
+            //}else{
+               // return new RegistrationResponse("unsucces this record is available ", false);
+            //}
         } catch (Exception e) {
             return new RegistrationResponse("unsucces", false);
         }
