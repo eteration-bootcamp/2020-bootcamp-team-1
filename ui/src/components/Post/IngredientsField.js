@@ -56,7 +56,7 @@ const IngredientsField = ({ register, useFieldArray }) => {
                     />
                     {fields.length > 1 && (
                       <Button
-                        className="btn-secondary ml-3 py-1"
+                        className="ml-3 py-1 cancel"
                         style={{ padding: "2px 13px" }}
                         onClick={() => remove(index)}
                         tabIndex={-1}
