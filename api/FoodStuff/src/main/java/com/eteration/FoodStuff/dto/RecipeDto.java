@@ -20,7 +20,7 @@ public class RecipeDto extends BaseDto {
     private String chefTips;
     @Lob
     private String image;
-    private UserDto user;
-    private List<Ingredient> ingredients;
-    private List<DirectionDto> directions;
+    private UserDto userDto;
+    private List<Ingredient> ingredientsDto;
+    private List<DirectionDto> directionsDto;
 }
