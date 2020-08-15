@@ -9,4 +9,5 @@ public interface RecipeService {
     void removeRecipe(long id);
     List<RecipeDto> getList();
     List<RecipeDto> getListByUserId(long userId);
+    List<RecipeDto> getListByContainingTitle(String title);
 }

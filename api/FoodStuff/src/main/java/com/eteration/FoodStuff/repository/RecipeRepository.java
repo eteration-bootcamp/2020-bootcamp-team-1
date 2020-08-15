@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe,Long> {
     List<Recipe> findAllByUserId(long userId);
+    List<Recipe> findByTitleContaining(String title);
 }

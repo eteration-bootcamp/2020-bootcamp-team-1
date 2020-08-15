@@ -27,6 +27,8 @@ public class RecipeServiceImpl implements RecipeService {
     public List<RecipeDto> getListByUserId(long userId) {
         return recipeMapper.toRecipeDtoList(recipeRepository.findAllByUserId(userId));
     }
+
+
     @Override
     public RecipeDto getRecipe(long id) {
         return recipeMapper.toRecipeDto(recipeRepository
@@ -39,5 +41,10 @@ public class RecipeServiceImpl implements RecipeService {
                 .delete(recipeRepository
                         .findById(id)
                         .orElseThrow(() -> new IllegalArgumentException("Recipe : " + id + "does not exist !")));
+    }
+
+    @Override
+    public List<RecipeDto> getListByContainingTitle(String title) {
+        return recipeMapper.toRecipeDtoList(recipeRepository.findByTitleContaining(title));
     }
 }

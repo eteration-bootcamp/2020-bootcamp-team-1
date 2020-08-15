@@ -68,4 +68,15 @@ public class RecipeController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping("search/{title}")
+    public ResponseEntity<RecipeListResponse> getListByTitle(@PathVariable(name = "title") String title ) {
+        try {
+            RecipeListResponse res = new RecipeListResponse();
+            res.setRecipeList(recipeService.getListByContainingTitle(title));
+            return ResponseEntity.ok(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+    }
 }
