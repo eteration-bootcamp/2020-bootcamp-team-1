@@ -45,8 +45,16 @@ textarea {
   border: none;
 }
 
+.btn.btn-primary.cancel {
+  background-color: #e97968;
+}
+
 .btn.btn-primary:active:focus {
   background-color: #b6a361;
+}
+
+.btn.btn-primary.cancel:focus {
+  background-color: #e97968;
 }
 
 .cursor-hover:hover,

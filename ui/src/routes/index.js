@@ -1,8 +1,9 @@
-// import publicRoutes from "./publicRoutes";
-import userRoutes from "./userRoutes";
+import publicRoutes from "./publicRoutes";
+import React from "react";
+import UserRoutes from "./userRoutes";
 
 const routes = () => {
-  return userRoutes;
+  return <UserRoutes />;
 };
 
 export default routes;
