@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/token")
+@RequestMapping("/api/account/")
 public class AccountController {
 
     private final AuthenticationManager authenticationManager;
@@ -29,7 +29,7 @@ public class AccountController {
     private final UserRepository userRepository;
     private final UserServiceImpl userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req) throws AuthenticationException {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getLoginDto().getUsername(), req.getLoginDto().getPassword()));
         final User user = userRepository.findByUsername(req.getLoginDto().getUsername());
@@ -37,8 +37,7 @@ public class AccountController {
         final long id = user.getId();
         return ResponseEntity.ok(new LoginResponse(new TokenDto(id,user.getUsername(), token)));
     }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest req) throws AuthenticationException {
         return ResponseEntity.ok(userService.register(req.getRegistrationDto()));
     }
