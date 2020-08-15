@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/api/token/register", "/api/token").permitAll()
                 .antMatchers("/api/token/login", "/api/token").permitAll()
-                .antMatchers("/api/recipes/","/api/recipes").permitAll()
+                .antMatchers("/api/recipes/**","/api/recipes").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

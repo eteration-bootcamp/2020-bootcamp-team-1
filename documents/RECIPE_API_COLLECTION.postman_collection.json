@@ -23,14 +23,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/token/register",
+							"raw": "localhost:8080/api/account/register",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"token",
+								"account",
 								"register"
 							]
 						}
@@ -119,12 +119,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/recipes/1",
+							"raw": "localhost:8080/api/recipes/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"recipes",
 								"1"
 							]
@@ -147,12 +148,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/recipes/1",
+							"raw": "localhost:8080/api/recipes/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"recipes",
 								"1"
 							]
@@ -178,12 +180,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/recipes/user/1",
+							"raw": "localhost:8080/api/recipes/user/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"recipes",
 								"user",
 								"1"
@@ -210,12 +213,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/recipes/",
+							"raw": "localhost:8080/api/recipes/",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"recipes",
 								""
 							]
@@ -241,12 +245,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/recipes/user/title",
+							"raw": "localhost:8080/api/recipes/user/title",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"recipes",
 								"user",
 								"title"
