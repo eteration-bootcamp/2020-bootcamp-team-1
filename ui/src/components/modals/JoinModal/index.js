@@ -13,7 +13,7 @@ import styles from "./JoinModal.module.css";
 import PasswordHiddenSvg from "../../svgs/PasswordHiddenSvg";
 import PasswordVisibleSvg from "../../svgs/PasswordVisibleSvg";
 
-const JoinModal = ({ showModal, onClose, login, signup, loading }) => {
+const JoinModal = ({ showModal, onClose, login, signup, loading, currentUser }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [visibility, setVisibility] = useState(false);
 
@@ -50,7 +50,6 @@ const JoinModal = ({ showModal, onClose, login, signup, loading }) => {
       username: values.username,
       password: values.password,
     };
-    console.log(newValues);
     isLogin
       ? login({ username: newValues.username, password: newValues.password })
       : signup({
@@ -62,6 +61,10 @@ const JoinModal = ({ showModal, onClose, login, signup, loading }) => {
 
   if (loading) {
     return <p>Loading</p>;
+  }
+
+  if (currentUser.id) {
+    onClose();
   }
 
   return (
@@ -126,6 +129,7 @@ const JoinModal = ({ showModal, onClose, login, signup, loading }) => {
 
 const mapStateToProps = (state) => ({
   loading: state.authReducer.loading,
+  currentUser: state.authReducer.currentUser,
 });
 
 export default connect(mapStateToProps, { login, signup })(JoinModal);
