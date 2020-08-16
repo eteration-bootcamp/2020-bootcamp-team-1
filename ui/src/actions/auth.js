@@ -6,7 +6,8 @@ import {
   SIGNUP,
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
-  AUTO_LOGIN
+  AUTO_LOGIN,
+  AUTO_LOGIN_SUCCESS
 } from "./types";
 
 import {
@@ -77,9 +78,9 @@ export const signupFail = ({ error }) => {
 };
 
 export const autoLogin = () => {
-  const user = getCurrentUser();
-  const token = getToken();
-  if (user && token) {
-    return { type: AUTO_LOGIN, payload: { user, token } };
-  }
+  return { type: AUTO_LOGIN };
+};
+
+export const autoLoginSuccess = ({ token, user }) => {
+  return { type: AUTO_LOGIN_SUCCESS, payload: { ...user, token } };
 };

@@ -6,7 +6,7 @@ import {
   SIGNUP,
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
-  AUTO_LOGIN
+  AUTO_LOGIN_SUCCESS
 } from "../actions/types";
 
 const initialState = {
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
       return { ...state, loading: false, currentUser: payload };
     case LOGIN_FAIL:
       return { ...state, loading: false, error: payload };
-    case AUTO_LOGIN:
+    case AUTO_LOGIN_SUCCESS:
       return { ...state, currentUser: payload };
     case LOGOUT:
       return { ...state, currentUser: {} };
