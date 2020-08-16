@@ -19,6 +19,9 @@ ui/build
 .env.test.local
 api/FoodStuff/bin
 .env.production.local
+api/FoodStuff/.gradle
+api/FoodStuff/.mvn
+api/FoodStuff/target
 
 npm-debug.log*
 yarn-debug.log*
