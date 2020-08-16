@@ -1,9 +1,24 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import {} from "../actions/types";
-import {} from "../actions/auth";
-import {} from "../api";
+import { GET_DETAILS } from "../actions/types";
+import { getDetailsSuccess, getDetailsFail } from "../actions/details";
+import { GET_RECIPE_PATH } from "../api";
 import Axios from "axios";
 
+const { get } = Axios;
+
+export function* getDetailsHandler(action) {
+  try {
+    const response = yield call(
+      get,
+      GET_RECIPE_PATH,
+      JSON.stringify(action.payload)
+    );
+    yield put(getDetailsSuccess({ recipeDto: response.data.recipeDto }));
+  } catch (error) {
+    yield put(getDetailsFail({ error }));
+  }
+}
+
 export default function* sagaHandler() {
-  //yield takeLatest(ADD_TODO, addTodoHandler)
+  yield takeLatest(GET_DETAILS, getDetailsHandler);
 }
