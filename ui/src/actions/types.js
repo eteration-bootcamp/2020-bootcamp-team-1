@@ -9,7 +9,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 
 export const AUTO_LOGIN = "AUTO_LOGIN";
-export const AUTO_SUCCESS = "AUTO_LOGIN_SUCCESS";
+export const AUTO_LOGIN_SUCCESS = "AUTO_LOGIN_SUCCESS";
 
 export const SIGNUP = "SIGNUP";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
