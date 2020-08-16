@@ -10,8 +10,7 @@ export function* getDetailsHandler(action) {
   try {
     const response = yield call(
       get,
-      GET_RECIPE_PATH,
-      JSON.stringify(action.payload)
+      GET_RECIPE_PATH + action.payload
     );
     yield put(getDetailsSuccess({ recipeDto: response.data.recipeDto }));
   } catch (error) {

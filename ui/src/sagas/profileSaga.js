@@ -15,8 +15,7 @@ export function* getProfileHandler(action) {
   try {
     const response = yield call(
       get,
-      GET_PROFILE_PATH,
-      JSON.stringify(action.payload)
+      GET_PROFILE_PATH + action.payload
     );
     yield put(getProfileSuccess({ userDto: response.data.userDto }));
   } catch (error) {
