@@ -1,5 +1,6 @@
 package com.eteration.foodstuff.security;
 
+import com.eteration.foodstuff.dto.UserDto;
 import com.eteration.foodstuff.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -44,8 +45,8 @@ public class JwtTokenUtil {
         return expiration.before(new Date());
     }
 
-    public String generateToken(User user) {
-        return doGenerateToken(user.getUsername());
+    public String generateToken(UserDto userDto) {
+        return doGenerateToken(userDto.getUsername());
     }
 
     private String doGenerateToken(String subject) {

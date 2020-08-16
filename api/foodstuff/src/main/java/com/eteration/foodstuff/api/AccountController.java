@@ -1,6 +1,7 @@
 package com.eteration.foodstuff.api;
 
 import com.eteration.foodstuff.dto.TokenDto;
+import com.eteration.foodstuff.dto.UserDto;
 import com.eteration.foodstuff.model.User;
 import com.eteration.foodstuff.repository.UserRepository;
 import com.eteration.foodstuff.request.LoginRequest;
@@ -10,6 +11,7 @@ import com.eteration.foodstuff.response.RegistrationResponse;
 import com.eteration.foodstuff.security.JwtTokenUtil;
 import com.eteration.foodstuff.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,19 +28,28 @@ public class AccountController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
-    private final UserRepository userRepository;
     private final UserServiceImpl userService;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req) throws AuthenticationException {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getLoginDto().getUsername(), req.getLoginDto().getPassword()));
-        final User user = userRepository.findByUsername(req.getLoginDto().getUsername());
-        final String token = jwtTokenUtil.generateToken(user);
-        final long id = user.getId();
-        return ResponseEntity.ok(new LoginResponse(new TokenDto(id,user.getUsername(), token)));
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getLoginDto().getUsername(), req.getLoginDto().getPassword()));
+            final UserDto userDto = userService.getByUserName(req.getLoginDto().getUsername());
+            final String token = jwtTokenUtil.generateToken(userDto);
+            final long id = userDto.getId();
+            return ResponseEntity.ok(new LoginResponse(new TokenDto(id, userDto.getUsername(), token)));
+        } catch (Exception ex) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
+
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest req) throws AuthenticationException {
-        return ResponseEntity.ok(userService.register(req.getRegistrationDto()));
+        try {
+            return ResponseEntity.ok(userService.register(req.getRegistrationDto()));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 }

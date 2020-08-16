@@ -44,7 +44,7 @@ public class UserController {
             res.setUserDto(userService.addUser(req.getUserDto()));
             return ResponseEntity.ok(res);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
     @PutMapping

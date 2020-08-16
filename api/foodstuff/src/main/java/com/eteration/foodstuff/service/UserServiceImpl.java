@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +33,10 @@ public class UserServiceImpl implements UserService {
                         .findById(userId)
                         .orElseThrow(() -> new IllegalArgumentException("User : " + userId + "does not exist !")));
     }
+    @Override
+    public UserDto getByUserName(String username) {
+        return userMapper.toUserDto(userRepository.findByUsername(username));
+    }
 
     @Override
     public UserDto updateUser(UserDto userDto) {
@@ -41,25 +46,16 @@ public class UserServiceImpl implements UserService {
         userDb.setAbout(userDto.getAbout());
         userDb.setUsername(userDto.getUsername());
         userDb.setPassword(userDb.getPassword());
-
         return userMapper.toUserDto(userRepository.save(userDb));
     }
 
     public RegistrationResponse register(RegistrationDto registrationDTO) {
-        try {
-            //if (true){
-                User user = new User();
-                user.setEmail(registrationDTO.getEmail());
-                user.setUsername(registrationDTO.getUsername());
-                user.setPassword(bCryptPasswordEncoder.encode(registrationDTO.getPassword()));
-                userRepository.save(user);
-                return new RegistrationResponse("succes", true);
-            //}else{
-               // return new RegistrationResponse("unsucces this record is available ", false);
-            //}
-        } catch (Exception e) {
-            return new RegistrationResponse("unsucces", false);
-        }
+        User user = new User();
+        user.setEmail(registrationDTO.getEmail());
+        user.setUsername(registrationDTO.getUsername());
+        user.setPassword(bCryptPasswordEncoder.encode(registrationDTO.getPassword()));
+        userRepository.save(user);
+        return new RegistrationResponse("succes", true);
     }
 
     @Override
