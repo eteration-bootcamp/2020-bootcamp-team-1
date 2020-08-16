@@ -10,12 +10,14 @@ ui/node_modules
 
 # production
 /build
+ui/build
 
 # misc
 .DS_Store
 .env.local
 .env.development.local
 .env.test.local
+api/FoodStuff/bin
 .env.production.local
 
 npm-debug.log*

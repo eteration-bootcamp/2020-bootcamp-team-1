@@ -6,9 +6,15 @@ import {
   SIGNUP,
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
+  AUTO_LOGIN
 } from "./types";
 
-import { setToken, removeToken } from "../utils/tokenUtil";
+import {
+  setUser,
+  removeUser,
+  getCurrentUser,
+  getToken
+} from "../utils/tokenUtil";
 
 export const login = ({ username, password }) => {
   return {
@@ -16,56 +22,64 @@ export const login = ({ username, password }) => {
     payload: {
       loginDto: {
         username,
-        password,
-      },
-    },
+        password
+      }
+    }
   };
 };
 
 export const loginSuccess = ({ tokenDto }) => {
-  setToken(tokenDto.token);
+  setUser({ token: tokenDto.token, user: tokenDto });
   return {
     type: LOGIN_SUCCESS,
-    payload: tokenDto,
+    payload: tokenDto
   };
 };
 
 export const loginFail = ({ error }) => {
   return {
     type: LOGIN_FAIL,
-    payload: error,
+    payload: error
   };
 };
 
 export const logout = () => {
-  removeToken();
+  removeUser();
   return {
-    type: LOGOUT,
+    type: LOGOUT
   };
 };
 
 export const signup = ({ username, email, password }) => {
-    return {
-      type: SIGNUP,
-      payload: {
-        registrationDto: {
-          username,
-          email,
-          password,
-        },
-      },
-    };
+  return {
+    type: SIGNUP,
+    payload: {
+      registrationDto: {
+        username,
+        email,
+        password
+      }
+    }
   };
-  
-  export const signupSuccess = () => {
-    return {
-      type: SIGNUP_SUCCESS,
-    };
+};
+
+export const signupSuccess = () => {
+  return {
+    type: SIGNUP_SUCCESS
   };
-  
-  export const signupFail = ({ error }) => {
-    return {
-      type: SIGNUP_FAIL,
-      payload: error,
-    };
+};
+
+export const signupFail = ({ error }) => {
+  return {
+    type: SIGNUP_FAIL,
+    payload: error
   };
+};
+
+export const autoLogin = () => {
+  const user = getCurrentUser();
+  const token = getToken();
+  if (user && token) {
+    return { type: AUTO_LOGIN, payload: { user, token } };
+  }
+};

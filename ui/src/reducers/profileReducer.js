@@ -4,17 +4,17 @@ import {
   GET_PERSON_RECIPES_SUCCESS,
   GET_PROFILE,
   GET_PROFILE_FAIL,
-  GET_PROFILE_SUCCESS,
+  GET_PROFILE_SUCCESS
 } from "../actions/types";
 
 const initialState = {
   loading: false,
-  error: {},
+  error: false,
   displayingProfile: {},
-  displayingRecipes: {},
+  displayingRecipes: {}
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_PROFILE:
