@@ -35,10 +35,10 @@ export const getPersonRecipes = ({ profileID }) => {
   };
 };
 
-export const getPersonRecipesSuccess = ({ recipeDto }) => {
+export const getPersonRecipesSuccess = ({ recipeList }) => {
   return {
     type: GET_PERSON_RECIPES_SUCCESS,
-    payload: recipeDto,
+    payload: recipeList,
   };
 };
 

@@ -25,7 +25,6 @@ export function* loginHandler(action) {
     );
     yield put(loginSuccess({ tokenDto: response.data.tokenDto }));
   } catch (error) {
-    console.log(error);
     yield put(loginFail({ error }));
   }
 }
