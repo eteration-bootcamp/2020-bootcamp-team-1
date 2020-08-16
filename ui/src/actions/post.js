@@ -5,7 +5,7 @@ import {
 } from "./types";
 
 export const createRecipe = ({ recipeDto }) => {
-  return { type: CREATE_RECIPE, payload: recipeDto };
+  return { type: CREATE_RECIPE, payload: { recipeDto } };
 };
 
 export const createRecipeSuccess = () => {
