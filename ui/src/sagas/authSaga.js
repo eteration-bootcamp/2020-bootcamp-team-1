@@ -34,7 +34,6 @@ export function* signupHandler(action) {
     yield call(post, REGISTER_PATH, JSON.stringify(action.payload));
     yield put(signupSuccess());
   } catch (error) {
-    console.log(error);
     yield put(signupFail({ error }));
   }
 }

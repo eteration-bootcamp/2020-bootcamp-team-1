@@ -2,7 +2,7 @@ import { setHeaderToken, removeHeaderToken } from "../api";
 
 export const setUser = ({ token, user }) => {
   localStorage.setItem("token", token);
-  localStorage.setItem(("currentUser", user));
+  localStorage.setItem("currentUser", JSON.stringify(user));
   setHeaderToken(token);
 };
 
