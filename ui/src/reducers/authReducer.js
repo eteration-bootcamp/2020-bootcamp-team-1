@@ -6,16 +6,17 @@ import {
   SIGNUP,
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
+  AUTO_LOGIN
 } from "../actions/types";
 
 const initialState = {
   currentUser: {},
   loading: false,
-  error: {},
-  signupSuccess: false,
+  error: false,
+  signupSuccess: false
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case LOGIN:
@@ -24,6 +25,8 @@ export default function (state = initialState, action) {
       return { ...state, loading: false, currentUser: payload };
     case LOGIN_FAIL:
       return { ...state, loading: false, error: payload };
+    case AUTO_LOGIN:
+      return { ...state, currentUser: payload };
     case LOGOUT:
       return { ...state, currentUser: {} };
     case SIGNUP:

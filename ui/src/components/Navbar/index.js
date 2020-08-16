@@ -7,22 +7,25 @@ import JoinModal from "../modals/JoinModal";
 import ActionButton from "../ActionButton";
 import Avatar from "../common/Avatar";
 import Brand from "./Brand";
+import { connect } from "react-redux";
 
-const Nav = ({ history }) => {
+const Nav = ({ history, currentUser: { id, username } }) => {
   const {
     push,
     location: { pathname }
   } = history;
 
-  history.listen((location, action) => {});
+  const loggedIn = id ? true : false;
+
+  history.listen((location, action) => {
+    window.scrollTo(0, 0);
+  });
 
   const [showModal, setShowModal] = useState(false);
 
   const onClick = () => {
-    if (1 === 1) {
-      // user not logged in
+    if (!loggedIn) {
       setShowModal(true);
-      console.log("OK");
     } else if (pathname === "/new") alert("OK");
     // will create a post request ?
     else push("/new");
@@ -39,12 +42,16 @@ const Nav = ({ history }) => {
       <Brand />
       <Searchbar />
       {pathname !== "/new" && (
-        <ActionButton isLoggedIn={false} onClick={onClick} />
+        <ActionButton isLoggedIn={loggedIn} onClick={onClick} />
       )}
-      {/* {<Avatar name="Tarık Köprülü" />} */}
+      {loggedIn && <Avatar name={username} />}
       <JoinModal onClose={() => setShowModal(false)} showModal={showModal} />
     </Navbar>
   );
 };
 
-export default withRouter(Nav);
+const mapStateToProps = state => ({
+  currentUser: state.authReducer.currentUser
+});
+
+export default connect(mapStateToProps)(withRouter(Nav));

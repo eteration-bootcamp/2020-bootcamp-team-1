@@ -1,14 +1,25 @@
-// import {
-//   CREATE_RECIPE,
-//   CREATE_RECIPE_FAIL,
-//   CREATE_RECIPE_SUCCESS
-// } from "../actions/types";
+import {
+  CREATE_RECIPE,
+  CREATE_RECIPE_FAIL,
+  CREATE_RECIPE_SUCCESS
+} from "../actions/types";
 
-const initialState = {};
+const initialState = { error: false, loading: false, postSuccessful: false };
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case CREATE_RECIPE:
+      return { ...state, loading: true };
+    case CREATE_RECIPE_SUCCESS:
+      return { ...state, loading: false, postSuccessful: true };
+    case CREATE_RECIPE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        postSuccessful: false,
+        error: payload
+      };
     default:
       return state;
   }

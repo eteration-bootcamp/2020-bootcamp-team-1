@@ -4,7 +4,7 @@ import {
   GET_DETAILS_SUCCESS,
 } from "../actions/types";
 
-const initialState = { loading: false, error: {}, recipeDetails: {} };
+const initialState = { loading: false, error: false, recipeDetails: {} };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
