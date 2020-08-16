@@ -13,31 +13,28 @@ import styles from "./JoinModal.module.css";
 import PasswordHiddenSvg from "../../svgs/PasswordHiddenSvg";
 import PasswordVisibleSvg from "../../svgs/PasswordVisibleSvg";
 
-const JoinModal = ({ showModal, onClose, login, signup }) => {
+const JoinModal = ({ showModal, onClose, login, signup, loading, currentUser }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [visibility, setVisibility] = useState(false);
 
   const formSchema = yup.object().shape({
-    username: !isLogin
+    username: yup
       .string()
       .required("Name required.")
       .max(25, "Max 20 characters allowed.")
       .min(4, "Min 4 characters."),
     email: !isLogin
-      ? yup
-          .string()
-          .required("Email required")
-          .email("Invalid email")
+      ? yup.string().required("Email required").email("Invalid email")
       : undefined,
     password: yup
       .string()
       .max(20, "Max 20 characters allowed")
       .min(6, "Min 6 characters")
-      .required("Password required")
+      .required("Password required"),
   });
 
   const { register, errors, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(formSchema),
   });
 
   const switchState = () => setIsLogin(!isLogin);
@@ -47,23 +44,28 @@ const JoinModal = ({ showModal, onClose, login, signup }) => {
   const text = isLogin ? "Log in" : "Sign up";
   const oppositeText = isLogin ? "Sign up" : "Log in";
 
-  const onSubmit = values => {
+  const onSubmit = (values) => {
     const newValues = {
       ...(!isLogin && { email: values.email }),
       username: values.username,
-      password: values.password
+      password: values.password,
     };
-    console.log(newValues);
-    if (isLogin) {
-      login({ username: newValues.username, password: newValues.password });
-    } else {
-      signup({
-        username: newValues.username,
-        email: newValues.email,
-        password: newValues.password
-      });
-    }
+    isLogin
+      ? login({ username: newValues.username, password: newValues.password })
+      : signup({
+          username: newValues.username,
+          email: newValues.email,
+          password: newValues.password,
+        });
   };
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
+
+  if (currentUser.id) {
+    onClose();
+  }
 
   return (
     <Modal
@@ -125,6 +127,9 @@ const JoinModal = ({ showModal, onClose, login, signup }) => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state) => ({
+  loading: state.authReducer.loading,
+  currentUser: state.authReducer.currentUser,
+});
 
 export default connect(mapStateToProps, { login, signup })(JoinModal);

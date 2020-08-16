@@ -3,7 +3,7 @@ import axios from "axios";
 import { removeUser } from "../utils/tokenUtil";
 import { logout } from "../actions/auth";
 
-axios.defaults.baseURL = "http://20.50.219.119:8080/api";
+axios.defaults.baseURL = "/api";
 axios.defaults.timeout = 60000; // 60 seconds
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
