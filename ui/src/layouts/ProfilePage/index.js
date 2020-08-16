@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import styles from "./ProfilePage.module.css";
 import RecipeCard from "../../components/common/RecipeCard";
 import Container from "react-bootstrap/Container";
@@ -7,8 +8,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getProfile, getPersonRecipes } from "../../actions/profile";
 
-const ProfilePage = ({ loading, displayingProfile, displayingRecipes }) => {
+const ProfilePage = ({ loading, displayingProfile, displayingRecipes, getProfile, getPersonRecipes }) => {
     const tempLink = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20190503-delish-pineapple-baked-salmon-horizontal-ehg-450-1557771120.jpg?crop=1.00xw:0.753xh;0,0.132xh&resize=980:*";
+
+    // getProfile({ profileID: useParams().id });
+    // console.log(displayingProfile);
+    // getPersonRecipes({ profileID: useParams().id });
+    // console.log(displayingRecipes);
+
     return (
         <Container className="layout justify-content-center">
             <Container className="mb-3">
