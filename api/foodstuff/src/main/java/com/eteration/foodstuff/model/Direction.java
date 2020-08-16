@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties("recipe")
 public class Direction extends BaseEntity {
     @Column(nullable = true)
     private byte stepNumber;

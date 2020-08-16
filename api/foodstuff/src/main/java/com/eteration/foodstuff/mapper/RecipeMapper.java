@@ -14,9 +14,9 @@ public interface RecipeMapper {
     @Named("toRecipeDto")
     RecipeDto toRecipeDto(Recipe recipe);
 
-    @IterableMapping(qualifiedByName = "toRecipe")
-    List<Recipe> toRecipeList(List<RecipeDto> recipeDtos);
+    @IterableMapping(qualifiedByName = "toRecipeList")
+    List<Recipe> toRecipeList(List<RecipeDto> recipeDtoList);
 
-    @IterableMapping(qualifiedByName = "toRecipeDto")
+    @IterableMapping(qualifiedByName = "toRecipeDtoList")
     List<RecipeDto> toRecipeDtoList(List<Recipe> recipes);
 }

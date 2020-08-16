@@ -3,6 +3,7 @@ package com.eteration.foodstuff.dto;
 import com.eteration.foodstuff.model.Ingredient;
 import lombok.*;
 import javax.persistence.Lob;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,6 +22,6 @@ public class RecipeDto extends BaseDto {
     @Lob
     private String image;
     private UserDto userDto;
-    private List<Ingredient> ingredientsDto;
+    private List<IngredientDto> ingredientsDto;
     private List<DirectionDto> directionsDto;
 }

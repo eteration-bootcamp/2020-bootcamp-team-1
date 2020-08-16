@@ -1,7 +1,12 @@
 package com.eteration.foodstuff.service;
 
 import com.eteration.foodstuff.dto.RecipeDto;
+import com.eteration.foodstuff.mapper.DirectionMapper;
+import com.eteration.foodstuff.mapper.IngredientMapper;
 import com.eteration.foodstuff.mapper.RecipeMapper;
+import com.eteration.foodstuff.model.Recipe;
+import com.eteration.foodstuff.repository.DirectionRepository;
+import com.eteration.foodstuff.repository.IngredientRepository;
 import com.eteration.foodstuff.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +19,9 @@ public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeMapper recipeMapper;
     private final RecipeRepository recipeRepository;
+    private final DirectionService directionService;
+    private final IngredientService ingredientService;
+
 
     @Override
     public RecipeDto addRecipe(RecipeDto recipeDto) {
@@ -31,9 +39,11 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeDto getRecipe(long id) {
-        return recipeMapper.toRecipeDto(recipeRepository
-                .findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Recipe : " + id + "does not exist !")));
+        RecipeDto recipeDto = recipeMapper.toRecipeDto(recipeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Recipe : " + id + "does not exist !")));
+        recipeDto.setDirectionsDto(directionService.getListByRecipeId(recipeDto.getId()));
+        recipeDto.setIngredientsDto(ingredientService.getListByRecipeId(recipeDto.getId()));
+
+        return recipeDto;
     }
     @Override
     public void removeRecipe(long id) {

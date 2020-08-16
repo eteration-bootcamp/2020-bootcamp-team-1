@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties("recipe")
 public class Ingredient  extends BaseEntity{
     @Lob
     @Column(nullable = true)

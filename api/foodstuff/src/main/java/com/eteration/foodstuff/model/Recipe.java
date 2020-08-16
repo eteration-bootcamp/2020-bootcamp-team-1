@@ -37,7 +37,7 @@ public class Recipe extends BaseEntity {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = Ingredient.class)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Ingredient.class)
     @JoinColumn(name="recipe_id", referencedColumnName="id")
     public List<Ingredient> ingredients = new ArrayList<>();
 
