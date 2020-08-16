@@ -18,30 +18,26 @@ const JoinModal = ({ showModal, onClose, login, signup }) => {
   const [visibility, setVisibility] = useState(false);
 
   const formSchema = yup.object().shape({
-    name: !isLogin
+    username: !isLogin
+      .string()
+      .required("Name required.")
+      .max(25, "Max 20 characters allowed.")
+      .min(4, "Min 4 characters."),
+    email: !isLogin
       ? yup
           .string()
-          .required("Name required.")
-          .max(20, "Max 20 characters allowed.")
-          .min(2, "Min 2 characters.")
+          .required("Email required")
+          .email("Invalid email")
       : undefined,
-    surname: !isLogin
-      ? yup
-          .string()
-          .required("Surname required")
-          .max(20, "Max 20 characters allowed")
-          .min(2, "Min 2 characters")
-      : undefined,
-    email: yup.string().required("Email required").email("Invalid email"),
     password: yup
       .string()
       .max(20, "Max 20 characters allowed")
       .min(6, "Min 6 characters")
-      .required("Password required"),
+      .required("Password required")
   });
 
   const { register, errors, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema)
   });
 
   const switchState = () => setIsLogin(!isLogin);
@@ -51,17 +47,21 @@ const JoinModal = ({ showModal, onClose, login, signup }) => {
   const text = isLogin ? "Log in" : "Sign up";
   const oppositeText = isLogin ? "Sign up" : "Log in";
 
-  const onSubmit = (values) => {
+  const onSubmit = values => {
     const newValues = {
-      ...(!isLogin && { username: values.name + " " + values.surname }),
-      email: values.email,
-      password: values.password,
+      ...(!isLogin && { email: values.email }),
+      username: values.username,
+      password: values.password
     };
     console.log(newValues);
     if (isLogin) {
       login({ username: newValues.username, password: newValues.password });
     } else {
-      signup({ username: newValues.username, email: newValues.email, password: newValues.password });
+      signup({
+        username: newValues.username,
+        email: newValues.email,
+        password: newValues.password
+      });
     }
   };
 
@@ -78,33 +78,22 @@ const JoinModal = ({ showModal, onClose, login, signup }) => {
           {!isLogin && (
             <Form.Group className="mb-3  text-left">
               <Form.Control
-                name="name"
+                name="email"
                 ref={register}
-                placeholder="Name"
-                isInvalid={errors.name}
+                placeholder="E-mail"
+                isInvalid={errors.email}
               />
-              <ErrorMessage errors={errors} name="name"></ErrorMessage>
-            </Form.Group>
-          )}
-          {!isLogin && (
-            <Form.Group className="mb-3  text-left">
-              <Form.Control
-                name="surname"
-                ref={register}
-                placeholder="Surname"
-                isInvalid={errors.surname}
-              />
-              <ErrorMessage errors={errors} name="surname"></ErrorMessage>
+              <ErrorMessage errors={errors} name="email"></ErrorMessage>
             </Form.Group>
           )}
           <Form.Group className="mb-3  text-left">
             <Form.Control
-              name="email"
+              name="username"
               ref={register}
-              placeholder="E-Mail"
-              isInvalid={errors.email}
+              placeholder="Username"
+              isInvalid={errors.username}
             />
-            <ErrorMessage errors={errors} name="email"></ErrorMessage>
+            <ErrorMessage errors={errors} name="username"></ErrorMessage>
           </Form.Group>
           <Form.Group className="mb-4 text-left position-relative">
             <Form.Control
@@ -136,6 +125,6 @@ const JoinModal = ({ showModal, onClose, login, signup }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, { login, signup })(JoinModal);
