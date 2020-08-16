@@ -30,6 +30,7 @@ public class Recipe extends BaseEntity {
     @Column(nullable = true)
     private String chefTips;
 
+    @Lob
     @Column(nullable = true)
     private String image;
 
