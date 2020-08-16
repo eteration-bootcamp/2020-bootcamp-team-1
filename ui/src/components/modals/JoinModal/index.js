@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,12 +7,13 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
+import { login, signup } from "../../../actions/auth";
 
 import styles from "./JoinModal.module.css";
 import PasswordHiddenSvg from "../../svgs/PasswordHiddenSvg";
 import PasswordVisibleSvg from "../../svgs/PasswordVisibleSvg";
 
-const JoinModal = ({ showModal, onClose }) => {
+const JoinModal = ({ showModal, onClose, login, signup }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [visibility, setVisibility] = useState(false);
 
@@ -30,19 +32,16 @@ const JoinModal = ({ showModal, onClose }) => {
           .max(20, "Max 20 characters allowed")
           .min(2, "Min 2 characters")
       : undefined,
-    email: yup
-      .string()
-      .required("Email required")
-      .email("Invalid email"),
+    email: yup.string().required("Email required").email("Invalid email"),
     password: yup
       .string()
       .max(20, "Max 20 characters allowed")
       .min(6, "Min 6 characters")
-      .required("Password required")
+      .required("Password required"),
   });
 
   const { register, errors, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(formSchema),
   });
 
   const switchState = () => setIsLogin(!isLogin);
@@ -52,13 +51,18 @@ const JoinModal = ({ showModal, onClose }) => {
   const text = isLogin ? "Log in" : "Sign up";
   const oppositeText = isLogin ? "Sign up" : "Log in";
 
-  const onSubmit = values => {
+  const onSubmit = (values) => {
     const newValues = {
       ...(!isLogin && { username: values.name + " " + values.surname }),
       email: values.email,
-      password: values.password
+      password: values.password,
     };
     console.log(newValues);
+    if (isLogin) {
+      login({ username: newValues.username, password: newValues.password });
+    } else {
+      signup({ username: newValues.username, email: newValues.email, password: newValues.password });
+    }
   };
 
   return (
@@ -132,4 +136,6 @@ const JoinModal = ({ showModal, onClose }) => {
   );
 };
 
-export default JoinModal;
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { login, signup })(JoinModal);
