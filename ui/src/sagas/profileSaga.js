@@ -27,8 +27,7 @@ export function* getPersonRecipesHandler(action) {
   try {
     const response = yield call(
       get,
-      GET_USER_RECIPES_PATH,
-      JSON.stringify(action.payload)
+      GET_USER_RECIPES_PATH + action.payload,
     );
     yield put(
       getPersonRecipesSuccess({ recipeList: response.data.recipeList })
