@@ -5,10 +5,7 @@ const Directions = ({ directions }) => {
   return (
     <div className="mt-3">
       <h4>Directions</h4>
-      <DirectionItem />
-      <DirectionItem />
-      <DirectionItem />
-      <DirectionItem />
+      {directions && directions.map((direction) => <DirectionItem key = { direction.id } description = { direction.description } stepNumber = { direction.stepNumber } />)}
     </div>
   );
 };
