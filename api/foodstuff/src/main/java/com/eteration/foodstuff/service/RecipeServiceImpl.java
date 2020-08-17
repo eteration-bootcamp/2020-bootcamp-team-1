@@ -33,7 +33,6 @@ public class RecipeServiceImpl implements RecipeService {
         recipe.setIngredients(ingredientMapper.toIngredientList(recipeDto.getIngredientsDto()));
         recipe.setDirections(directionMapper.toDirectionList(recipeDto.getDirectionsDto()));
         recipe.setUser(userRepository.getOne(recipeDto.getUserDto().getId()));
-
         return recipeMapper.toRecipeDto(recipeRepository.save(recipe));
     }
     @Override

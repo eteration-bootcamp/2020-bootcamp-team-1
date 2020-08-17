@@ -14,9 +14,17 @@ const Requestor = () => {
     const uniqueList = [
       ...new Map(items.map(item => [item.title, item])).values()
     ];
-    console.log(uniqueList);
+    const updatedList = [...uniqueList];
+    updatedList.map(item => {
+      item.ingredientsDto = item.ingredients;
+      item.directionsDto = item.directions;
+      item.userDto = { id: 2 };
+      delete item.ingredients;
+      delete item.directions;
+    });
+
     await Promise.all(
-      uniqueList.map(async (item, index) => {
+      updatedList.map(async (item, index) => {
         try {
           await fetch(url, {
             method: "POST",
@@ -24,7 +32,7 @@ const Requestor = () => {
               accept: "application/json",
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({recipeDto:item})
+            body: JSON.stringify({ recipeDto: item })
           }).then(res => console.log(`${index} sent successfully.`));
         } catch (error) {
           console.error(`${index} failed`);
@@ -43,13 +51,13 @@ const Requestor = () => {
 
       const response = await fetch(
         `https://yummly2.p.rapidapi.com/feeds/list?tag=list.recipe.popular&limit=18&start=${count +
-        1}`,
+          1}`,
         {
           method: "GET",
           headers: {
             "x-rapidapi-host": "yummly2.p.rapidapi.com",
-            "x-rapidapi-key": "c92cdc6648mshb0dea232c3a695bp184cb1jsn279e6c857a8d",
-
+            "x-rapidapi-key":
+              "c92cdc6648mshb0dea232c3a695bp184cb1jsn279e6c857a8d"
           }
         }
       );
@@ -79,10 +87,10 @@ const Requestor = () => {
           ],
           directions: item.content.preparationSteps
             ? [
-              ...item.content.preparationSteps.map((step, index) => {
-                return { stepNumber: index, description: step };
-              })
-            ]
+                ...item.content.preparationSteps.map((step, index) => {
+                  return { stepNumber: index, description: step };
+                })
+              ]
             : []
         };
 
@@ -118,11 +126,11 @@ const Requestor = () => {
         ) : failed ? (
           <p>Request {count} is failed</p>
         ) : (
-              <p>Request {count} is completed.</p>
-            )
+          <p>Request {count} is completed.</p>
+        )
       ) : (
-          undefined
-        )}
+        undefined
+      )}
       <Button onClick={onClick2}> SEND ALL UNIQUES </Button>
     </div>
   );
