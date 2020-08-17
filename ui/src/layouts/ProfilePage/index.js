@@ -25,8 +25,7 @@ const ProfilePage = ({
     getPersonRecipes({ profileID: id });
   }, [getProfile, getPersonRecipes]);
 
-  console.log(displayingProfile);
-  console.log(displayingRecipes);
+  const username = displayingProfile.username;
 
   if (loading) return <LoadingIndicator fullScreen={true} />;
 
@@ -34,23 +33,38 @@ const ProfilePage = ({
     <Container className="layout justify-content-center">
       <Container className="mb-3">
         <Row className="d-flex align-items-center">
-          <Col lg={4} md={3} sm={5} xs={5}>
+          <Col xl={4} lg={4} md={3} sm={5} xs={5}>
             <Row>
-              <Col>
-                <span className={styles.profileImageRounded}>NS</span>
+              <Col xl={4}>
+                <span className={styles.profileImageRounded}>
+                  {username ? username.charAt(0) : "NS"}
+                </span>
               </Col>
-              <Col style={{ minWidth: 200 }}>
-                <p className={styles.nameText}>{displayingProfile.username}</p>
+              <Col xl={8} style={{ minWidth: 200 }}>
+                <p className={styles.nameText}>
+                  {username ? username : "Name Surname"}
+                </p>
               </Col>
             </Row>
           </Col>
-          <Col lg={2} md={3} sm={7} xs={7} className={styles.recipesCountBox}>
+          <Col
+            xl={2}
+            lg={2}
+            md={3}
+            sm={7}
+            xs={7}
+            className={styles.recipesCountBox}
+          >
             <u>RECIPES</u>
-            <p>{ displayingRecipes.length }</p>
+            <p>{displayingRecipes.length}</p>
           </Col>
-          <Col lg={6} md={6} sm={12} xs={12} className={styles.aboutBox}>
+          <Col xl={6} lg={6} md={6} sm={12} xs={12} className={styles.aboutBox}>
             <u>ABOUT</u>
-            <p>{displayingProfile.about}</p>
+            <p>
+              {displayingProfile.about
+                ? displayingProfile.about
+                : "There is no about info available. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim rutrum diam non aliquam."}
+            </p>
           </Col>
         </Row>
       </Container>
@@ -61,113 +75,18 @@ const ProfilePage = ({
           textAlign: "center",
         }}
       >
-        <RecipeCard
-          item={{
-            title: "Card title, very long title example with some bosch made",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title",
-            description: "Lorem ipsumus",
-            prepTime: "20 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very long e",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very le",
-            description:
-              "Lorem ipsum dolor sdasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very long title example with some bosch made",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very long title example with some bosch made",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very long title example with some bosch made",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very ",
-            description: "Lorem ipsum dolor sit amet as",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very longmade",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-
-        <RecipeCard
-          item={{
-            title: "Card title, very longmade",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
-        <RecipeCard
-          item={{
-            title: "Card title, very longmade",
-            description:
-              "Lorem ipsum dolor sit amet asdasdasdasd asdasdasdasdsadsadasdasdsa asdasdas dasdwqeqweqweqweasdas dasdaszxczxczx",
-            prepTime: "30 Minutes",
-            image: tempLink,
-          }}
-        />
+        {displayingRecipes &&
+          Object.values(displayingRecipes).map((displayingRecipe) => (
+            <RecipeCard
+              key={displayingRecipe.id}
+              item={{
+                title: displayingRecipe.title,
+                description: displayingRecipe.description,
+                prepTime: displayingRecipe.prepTime,
+                image: displayingRecipe.image,
+              }}
+            />
+          ))}
       </div>
     </Container>
   );
