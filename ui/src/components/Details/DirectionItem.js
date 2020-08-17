@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 
-const DirectionItem = () => {
+const DirectionItem = ({ description, stepNumber }) => {
   const [checked, setChecked] = useState(false);
   return (
     <div className="ml-2 mt-4">
@@ -19,13 +19,13 @@ const DirectionItem = () => {
               : undefined
           }
         >
-          Step 1
+          Step { stepNumber + 1 }
         </h6>
         <p
           className="mt-2"
           style={checked ? { textDecoration: "line-through" } : undefined}
         >
-          Hello World
+          { description }
         </p>
       </span>
     </div>
