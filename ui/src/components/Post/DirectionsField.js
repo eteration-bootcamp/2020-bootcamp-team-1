@@ -51,7 +51,7 @@ const DirectionsField = ({ register, useFieldArray }) => {
                       className={styles.Fluid}
                       as="textarea"
                       rows="2"
-                      name={`directions[${index}].description`}
+                      name={`directionsDto[${index}].description`}
                       placeholder={`Step ${index + 1}`}
                       ref={register()}
                     />

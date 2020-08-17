@@ -1,18 +1,21 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { LOGIN, SIGNUP, AUTO_LOGIN } from "../actions/types";
+import {
+  LOGIN,
+  SIGNUP,
+  AUTO_LOGIN,
+  SET_MODAL_STATE,
+  SET_MODAL_VISIBILITY
+} from "../actions/types";
 import {
   loginSuccess,
   loginFail,
   signupSuccess,
   signupFail,
-  autoLoginSuccess,
+  autoLoginSuccess
 } from "../actions/auth";
 import { LOGIN_PATH, REGISTER_PATH } from "../api";
 import Axios from "axios";
-import {
-    getCurrentUser,
-    getToken
-  } from "../utils/tokenUtil";
+import { getCurrentUser, getToken } from "../utils/tokenUtil";
 
 const { post } = Axios;
 
@@ -39,15 +42,26 @@ export function* signupHandler(action) {
 }
 
 export function* autoLoginHandler() {
+  console.log("AUTOLOGIN");
   const user = yield call(getCurrentUser);
   const token = yield call(getToken);
   if (user && token) {
-      yield put(autoLoginSuccess({ token, user }));
+    yield put(autoLoginSuccess({ token, user }));
   }
+}
+
+export function* modalVisibilityHandler() {
+  yield;
+}
+
+export function* modalStateHandler() {
+  yield;
 }
 
 export default function* sagaHandler() {
   yield takeLatest(LOGIN, loginHandler);
   yield takeLatest(SIGNUP, signupHandler);
   yield takeLatest(AUTO_LOGIN, autoLoginHandler);
+  yield takeLatest(SET_MODAL_STATE, modalStateHandler);
+  yield takeLatest(SET_MODAL_VISIBILITY, modalVisibilityHandler);
 }

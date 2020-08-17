@@ -11,7 +11,7 @@ export const getToken = () => {
 };
 
 export const getCurrentUser = () => {
-  return localStorage.getItem("currentUser");
+  return JSON.parse(localStorage.getItem("currentUser"));
 };
 
 export const removeUser = () => {

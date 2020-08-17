@@ -4,17 +4,23 @@ import Ellipsis from "react-ellipsis-pjs";
 import { withRouter } from "react-router-dom";
 import styles from "../Common.module.css";
 import TimerSvg from "../../svgs/TimerSvg";
+import defImage from "../../../assets/images/defimage.png";
 
 const RecipeCard = ({
-  item: { title, prepTime, description, image },
+  item: { id, title, prepTime, description, image },
   history: { push }
 }) => {
-  
-  const onCardClick = () => push("/recipe/1");
+  console.log(title, prepTime, description, image);
+
+  const onCardClick = () => push(`recipe/${id}`);
 
   return (
     <Card className={styles.Card + " cursor-hover"} onClick={onCardClick}>
-      <Card.Img variant="top" src={image} className={styles.CardImage} />
+      <Card.Img
+        variant="top"
+        src={image || defImage}
+        className={styles.CardImage}
+      />
       <Card.Body>
         <Ellipsis
           text={title}

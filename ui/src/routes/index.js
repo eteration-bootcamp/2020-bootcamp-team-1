@@ -1,21 +1,11 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 
 import PublicRoutes from "./publicRoutes";
 import UserRoutes from "./userRoutes";
-import { autoLogin } from "../actions/auth";
 
-const Routes = ({ currentUser: { id }, autoLogin }) => {
-  // useEffect(() => {
-  //   autoLogin();
-  // }, [autoLogin]);
-
-  if (id) return <UserRoutes />;
+const Routes = ({ isLoggedIn }) => {
+  if (isLoggedIn) return <UserRoutes />;
   return <PublicRoutes />;
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.authReducer.currentUser
-});
-
-export default connect(mapStateToProps, { autoLogin })(Routes);
+export default Routes;

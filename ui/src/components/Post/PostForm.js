@@ -23,7 +23,7 @@ import {
   titleName
 } from "./postFieldNames";
 
-const PostForm = () => {
+const PostForm = ({ createRecipe }) => {
   const reqMsg = "Required";
 
   const [img, setImg] = useState(null);
@@ -50,13 +50,9 @@ const PostForm = () => {
       .max(100, maxMsg(100))
   });
 
-  const {
-    register,
-    errors,
-    handleSubmit,
-    control,
-    setValue
-  } = useForm({ resolver: yupResolver(PostSchema) });
+  const { register, errors, handleSubmit, control, setValue } = useForm({
+    resolver: yupResolver(PostSchema)
+  });
 
   const ingredientArray = useFieldArray({ control, name: ingName });
 
@@ -66,13 +62,14 @@ const PostForm = () => {
     const newValues = {
       ...values,
       ...(img && { [imgName]: img.base64 }),
-      directions: [
-        ...values.directions.map((direction, index) => {
+      directionsDto: [
+        ...values.directionsDto.map((direction, index) => {
           return { ...direction, stepNumber: index + 1 };
         })
       ]
     };
-    console.log(newValues);
+    console.log(JSON.stringify(newValues));
+    // createRecipe({ recipeDto: newValues });
   };
 
   return (
