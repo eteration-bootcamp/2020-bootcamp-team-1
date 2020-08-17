@@ -49,7 +49,7 @@ const IngredientsField = ({ register, useFieldArray }) => {
                   >
                     <Form.Control
                       className={styles.Fluid}
-                      name={`ingredients[${index}].name`}
+                      name={`ingredientsDto[${index}].name`}
                       placeholder={`Ingredient ${index + 1}`}
                       // isInvalid={errors[`ingredient${item.id}`]}
                       ref={register()}

@@ -1,11 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Route } from "react-router-dom";
 import HomePage from "./layouts/HomePage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Router from "./routes";
+import { connect } from "react-redux";
+import { autoLogin } from "./actions/auth";
 
-function App() {
+function App({ currentUser, autoLogin }) {
+  useEffect(() => {
+    autoLogin();
+  }, [autoLogin]);
+
   return (
     <Fragment>
       <Navbar />
@@ -13,7 +19,7 @@ function App() {
       <Route
         path={"/(.+)"}
         render={() => {
-          return <Router />;
+          return <Router isLoggedIn={currentUser.id} />;
         }}
       ></Route>
       <Footer />
@@ -21,4 +27,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  currentUser: state.authReducer.currentUser
+});
+
+export default connect(mapStateToProps, { autoLogin })(App);

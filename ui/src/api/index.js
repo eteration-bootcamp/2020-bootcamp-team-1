@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import { removeUser } from "../utils/tokenUtil";
 import { logout } from "../actions/auth";
 
 axios.defaults.baseURL = "/api";

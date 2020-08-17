@@ -4,7 +4,7 @@ import {
   GET_ALL_RECIPES_SUCCESS
 } from "../actions/types";
 
-const initialState = { recipes: {}, error: false, loading: false };
+const initialState = { recipes: [], error: false, loading: false };
 
 export default function(state = initialState, action) {
   const { type, payload } = action;

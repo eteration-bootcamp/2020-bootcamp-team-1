@@ -7,15 +7,12 @@ import {
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
   AUTO_LOGIN,
-  AUTO_LOGIN_SUCCESS
+  AUTO_LOGIN_SUCCESS,
+  SET_MODAL_STATE,
+  SET_MODAL_VISIBILITY
 } from "./types";
 
-import {
-  setUser,
-  removeUser,
-  getCurrentUser,
-  getToken
-} from "../utils/tokenUtil";
+import { setUser, removeUser } from "../utils/tokenUtil";
 
 export const login = ({ username, password }) => {
   return {
@@ -83,4 +80,12 @@ export const autoLogin = () => {
 
 export const autoLoginSuccess = ({ token, user }) => {
   return { type: AUTO_LOGIN_SUCCESS, payload: { ...user, token } };
+};
+
+export const switchModalVisibility = () => {
+  return { type: SET_MODAL_VISIBILITY };
+};
+
+export const switchModalState = () => {
+  return { type: SET_MODAL_STATE };
 };
