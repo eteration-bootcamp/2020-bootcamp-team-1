@@ -3,10 +3,10 @@ import styles from "../Common.module.css";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-const Avatar = ({ name, onLogout, onProfile }) => {
+const Avatar = ({ name = "", onLogout, onProfile }) => {
   const letters = name
     .split(" ")
-    .map(word => word[0].toUpperCase())
+    .map(word => word[0] && word[0].toUpperCase())
     .slice(0, 2);
 
   const popover = (
