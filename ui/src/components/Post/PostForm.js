@@ -3,6 +3,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
+import Alert from "react-bootstrap/Alert";
 
 import ImageDrop from "./ImageDrop";
 import IngredientsField from "./IngredientsField";
@@ -23,7 +24,7 @@ import {
   titleName
 } from "./postFieldNames";
 
-const PostForm = ({ createRecipe }) => {
+const PostForm = ({ createRecipe, loading, error, postSuccessful }) => {
   const reqMsg = "Required";
 
   const [img, setImg] = useState(null);
@@ -68,8 +69,7 @@ const PostForm = ({ createRecipe }) => {
         })
       ]
     };
-    console.log(JSON.stringify(newValues));
-    // createRecipe({ recipeDto: newValues });
+    createRecipe({ recipeDto: newValues });
   };
 
   return (
@@ -93,9 +93,14 @@ const PostForm = ({ createRecipe }) => {
           setValue={setValue}
         />
         <ChefTipsField register={register} errors={errors} />
+        {error && <Alert variant="danger">An error occured</Alert>}
+        {postSuccessful && (
+          <Alert variant="success">Recipe created successfully</Alert>
+        )}
         <ActionButton
           isLoggedIn={true}
           isPost={true}
+          isLoading={loading}
           onClick={handleSubmit(onSubmit)}
         />
       </Form>

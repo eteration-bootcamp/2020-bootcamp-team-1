@@ -35,6 +35,8 @@ const Nav = ({
     else push("/new");
   };
 
+  const onProfileClick = () => push(`/profile/${id}`);
+
   return (
     <Navbar
       fixed="top"
@@ -48,7 +50,9 @@ const Nav = ({
       {pathname !== "/new" && (
         <ActionButton isLoggedIn={loggedIn} onClick={onClick} />
       )}
-      {loggedIn && <Avatar name={username} onLogout={logout} />}
+      {loggedIn && (
+        <Avatar name={username} onLogout={logout} onProfile={onProfileClick} />
+      )}
       <JoinModal />
     </Navbar>
   );

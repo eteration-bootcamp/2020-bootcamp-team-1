@@ -11,11 +11,10 @@ export const getUserId = state => state.authReducer.currentUser.id;
 export function* createRecipeHandler(action) {
   try {
     const userId = yield select(getUserId);
-    yield call(
-      post,
-      ADD_RECIPE_PATH,
-      JSON.stringify({ ...action.payload, userDto: { id: userId } })
-    );
+    const newRecipe = { ...action.payload.recipeDto };
+    newRecipe.userDto = { id: userId };
+    console.log(JSON.stringify({ recipeDto: newRecipe }));
+    yield call(post, ADD_RECIPE_PATH, JSON.stringify({ recipeDto: newRecipe }));
     yield put(createRecipeSuccess());
   } catch (error) {
     yield put(createRecipeFail({ error }));

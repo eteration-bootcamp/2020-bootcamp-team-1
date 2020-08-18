@@ -10,7 +10,6 @@ const RecipeCard = ({
   item: { id, title, prepTime, description, image },
   history: { push }
 }) => {
-  console.log(title, prepTime, description, image);
 
   const onCardClick = () => push(`recipe/${id}`);
 
