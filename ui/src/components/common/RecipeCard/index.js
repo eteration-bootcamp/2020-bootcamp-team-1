@@ -1,17 +1,16 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Ellipsis from "react-ellipsis-pjs";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styles from "../Common.module.css";
 import TimerSvg from "../../svgs/TimerSvg";
 import defImage from "../../../assets/images/defimage.png";
 
-const RecipeCard = ({
-  item: { id, title, prepTime, description, image },
-  history: { push }
-}) => {
-
+const RecipeCard = ({ item }) => {
   const onCardClick = () => push(`/recipe/${id}`);
+  const { push } = useHistory();
+
+  const { id, title, prepTime, description, image } = item || {};
 
   return (
     <Card className={styles.Card + " cursor-hover"} onClick={onCardClick}>
@@ -40,4 +39,4 @@ const RecipeCard = ({
   );
 };
 
-export default withRouter(RecipeCard);
+export default RecipeCard;
