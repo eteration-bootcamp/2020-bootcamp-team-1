@@ -18,7 +18,7 @@ const ProfilePage = ({
 }) => {
   const { id } = useParams();
   useEffect(() => {
-    getProfile({ profileID: id });
+    // getProfile({ profileID: id });
     getPersonRecipes({ profileID: id });
   }, [getProfile, getPersonRecipes, id]);
 
@@ -34,7 +34,7 @@ const ProfilePage = ({
             <Row>
               <Col xl={4}>
                 <span className={styles.profileImageRounded}>
-                  {username ? username.charAt(0) : "NS"}
+                  {username ? username.charAt(0).toUpperCase() : "NS"}
                 </span>
               </Col>
               <Col xl={8} style={{ minWidth: 200 }}>
@@ -60,7 +60,7 @@ const ProfilePage = ({
             <p>
               {displayingProfile.about
                 ? displayingProfile.about
-                : "There is no about info available. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim rutrum diam non aliquam."}
+                : "There is no about info available."}
             </p>
           </Col>
         </Row>
@@ -74,15 +74,7 @@ const ProfilePage = ({
       >
         {displayingRecipes &&
           Object.values(displayingRecipes).map(displayingRecipe => (
-            <RecipeCard
-              key={displayingRecipe.id}
-              item={{
-                title: displayingRecipe.title,
-                description: displayingRecipe.description,
-                prepTime: displayingRecipe.prepTime,
-                image: displayingRecipe.image
-              }}
-            />
+            <RecipeCard key={displayingRecipe.id} item={displayingRecipe} />
           ))}
       </div>
     </Container>
@@ -91,7 +83,7 @@ const ProfilePage = ({
 
 const mapStateToProps = state => ({
   loading: state.profileReducer.loading,
-  displayingProfile: state.profileReducer.displayingProfile,
+  displayingProfile: state.authReducer.currentUser,
   displayingRecipes: state.profileReducer.displayingRecipes
 });
 

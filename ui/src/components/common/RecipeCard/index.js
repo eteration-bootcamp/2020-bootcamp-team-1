@@ -11,7 +11,7 @@ const RecipeCard = ({
   history: { push }
 }) => {
 
-  const onCardClick = () => push(`recipe/${id}`);
+  const onCardClick = () => push(`/recipe/${id}`);
 
   return (
     <Card className={styles.Card + " cursor-hover"} onClick={onCardClick}>
