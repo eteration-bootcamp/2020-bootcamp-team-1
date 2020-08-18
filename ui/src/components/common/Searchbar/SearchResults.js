@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, Fragment } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "../Common.module.css";
+import { useHistory } from "react-router-dom";
 
-const SearchResults = ({ setVisibility, visible, loading }) => {
-  const tempImg = "https://scx1.b-cdn.net/csz/news/800/2016/howcuttingdo.jpg";
-
+const SearchResults = ({ setVisibility, visible, loading, results }) => {
+  const { push } = useHistory();
   function useOutsideAlerter(ref) {
     useEffect(() => {
       function handleClickOutside(event) {
@@ -21,6 +21,11 @@ const SearchResults = ({ setVisibility, visible, loading }) => {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
+  const onItemClick = id => {
+    setVisibility(false);
+    push(`/recipe/${id}`);
+  };
+
   return (
     <div
       ref={wrapperRef}
@@ -29,40 +34,22 @@ const SearchResults = ({ setVisibility, visible, loading }) => {
       }
       style={visible ? undefined : { display: "none" }}
     >
-      {!loading && (
-        <Fragment>
+      {!loading &&
+        results.length > 0 &&
+        results.map(item => (
           <div
+            key={item.id}
+            onClick={() => onItemClick(item.id)}
             className={
               styles.SearchResultItem + " py-1 px-2 d-flex align-items-center"
             }
           >
             <span>
-              <img alt="" src={tempImg} />
+              <img alt="" src={item.image} />
             </span>
-            <p className="d-inline-block m-0 ml-2">Food Item 1</p>
+            <p className="d-inline-block m-0 ml-2">{item.title}</p>
           </div>
-          <div
-            className={
-              styles.SearchResultItem + " py-1 px-2 d-flex align-items-center"
-            }
-          >
-            <span>
-              <img alt="" src={tempImg} />
-            </span>
-            <p className="d-inline-block m-0 ml-2">Food Item 2</p>
-          </div>
-          <div
-            className={
-              styles.SearchResultItem + " py-1 px-2 d-flex align-items-center"
-            }
-          >
-            <span>
-              <img alt="" src={tempImg} />
-            </span>
-            <p className="d-inline-block m-0 ml-2">Food Item 3</p>
-          </div>
-        </Fragment>
-      )}
+        ))}
     </div>
   );
 };

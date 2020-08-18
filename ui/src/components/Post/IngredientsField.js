@@ -15,7 +15,6 @@ const IngredientsField = ({ register, useFieldArray }) => {
   return (
     <DragDropContext
       onDragEnd={result => {
-        console.log(result);
         if (result.destination)
           move(result.source.index, result.destination.index);
         else return;

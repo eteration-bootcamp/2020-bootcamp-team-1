@@ -28,8 +28,8 @@
 }
 
 .SearchResultItem img {
-  max-width: 60px;
-  height: calc(60 * 0.7);
+  width: 60px;
+  height: 45px;
   object-fit: cover;
 }
 

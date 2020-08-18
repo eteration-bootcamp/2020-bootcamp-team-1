@@ -37,6 +37,11 @@ const Nav = ({
 
   const onProfileClick = () => push(`/profile/${id}`);
 
+  const onLogout = () => {
+    logout();
+    push("/");
+  };
+
   return (
     <Navbar
       fixed="top"
@@ -51,7 +56,11 @@ const Nav = ({
         <ActionButton isLoggedIn={loggedIn} onClick={onClick} />
       )}
       {loggedIn && (
-        <Avatar name={username} onLogout={logout} onProfile={onProfileClick} />
+        <Avatar
+          name={username}
+          onLogout={onLogout}
+          onProfile={onProfileClick}
+        />
       )}
       <JoinModal />
     </Navbar>

@@ -14,16 +14,13 @@ const ProfilePage = ({
   displayingProfile,
   displayingRecipes,
   getProfile,
-  getPersonRecipes,
+  getPersonRecipes
 }) => {
-  const tempLink =
-    "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20190503-delish-pineapple-baked-salmon-horizontal-ehg-450-1557771120.jpg?crop=1.00xw:0.753xh;0,0.132xh&resize=980:*";
-
   const { id } = useParams();
   useEffect(() => {
     getProfile({ profileID: id });
     getPersonRecipes({ profileID: id });
-  }, [getProfile, getPersonRecipes]);
+  }, [getProfile, getPersonRecipes, id]);
 
   const username = displayingProfile.username;
 
@@ -72,18 +69,18 @@ const ProfilePage = ({
       <div
         className={styles.Layout}
         style={{
-          textAlign: "center",
+          textAlign: "center"
         }}
       >
         {displayingRecipes &&
-          Object.values(displayingRecipes).map((displayingRecipe) => (
+          Object.values(displayingRecipes).map(displayingRecipe => (
             <RecipeCard
               key={displayingRecipe.id}
               item={{
                 title: displayingRecipe.title,
                 description: displayingRecipe.description,
                 prepTime: displayingRecipe.prepTime,
-                image: displayingRecipe.image,
+                image: displayingRecipe.image
               }}
             />
           ))}
@@ -92,10 +89,10 @@ const ProfilePage = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.profileReducer.loading,
   displayingProfile: state.profileReducer.displayingProfile,
-  displayingRecipes: state.profileReducer.displayingRecipes,
+  displayingRecipes: state.profileReducer.displayingRecipes
 });
 
 export default connect(mapStateToProps, { getProfile, getPersonRecipes })(

@@ -13,7 +13,6 @@ export function* createRecipeHandler(action) {
     const userId = yield select(getUserId);
     const newRecipe = { ...action.payload.recipeDto };
     newRecipe.userDto = { id: userId };
-    console.log(JSON.stringify({ recipeDto: newRecipe }));
     yield call(post, ADD_RECIPE_PATH, JSON.stringify({ recipeDto: newRecipe }));
     yield put(createRecipeSuccess());
   } catch (error) {
