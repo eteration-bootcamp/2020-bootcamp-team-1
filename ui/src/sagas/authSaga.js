@@ -42,7 +42,6 @@ export function* signupHandler(action) {
 }
 
 export function* autoLoginHandler() {
-  console.log("AUTOLOGIN");
   const user = yield call(getCurrentUser);
   const token = yield call(getToken);
   if (user && token) {

@@ -1,5 +1,12 @@
 .GrandImage {
   width: 100%;
   margin: 0 auto;
-  object-fit: contain;
+  max-height: 40vh;
+  object-fit: cover;
+}
+
+@media (min-width: 550px) {
+  .GrandImage {
+    max-height: 65vh;
+  }
 }

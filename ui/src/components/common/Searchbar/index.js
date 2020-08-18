@@ -1,39 +1,51 @@
-import React, { useState } from "react";
-import FormControl from "react-bootstrap/FormControl";
+import React, { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
+import { connect } from "react-redux";
+
 import styles from "../Common.module.css";
 import SearchResults from "./SearchResults";
+import { searchRecipes } from "../../../actions/home";
+import useDebounce from "../../../utils/useDebounce";
 
 const Searchbar = ({
   large = false,
   placeholder = "Search ...",
-  className
+  searchLoading,
+  searchResults,
+  searchRecipes
 }) => {
   const iconSize = large ? "28px" : "21px";
   const [resultsVisible, setResultsVisible] = useState(false);
-  const [resultsLoading, setResultsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 400);
 
   const onChange = e => {
-    if (e.target.value !== "") {
-      setResultsLoading(true);
+    if (e.target.value && e.target.value !== "") {
       setResultsVisible(true);
-      setTimeout(() => setResultsLoading(false), 1000);
-    } else {
+    } else if (e.target.value === "") {
       setResultsVisible(false);
     }
+    setSearchTerm(e.target.value);
   };
+
+  useEffect(() => {
+    if (searchTerm !== "") {
+      searchRecipes({ filter: debouncedSearchTerm });
+    }
+  }, [debouncedSearchTerm]);
 
   return (
     <Container className={styles.SearchbarWrapper + " justify-content-center"}>
       <div className={styles.Searchbar + " m-auto"}>
-        <FormControl
+        <Form.Control
           size={large ? "lg" : undefined}
           type="text"
           onChange={onChange}
           placeholder={placeholder}
         />
-        {resultsLoading ? (
+        {searchLoading ? (
           <Spinner
             animation="border"
             role="status"
@@ -54,11 +66,17 @@ const Searchbar = ({
         <SearchResults
           setVisibility={setResultsVisible}
           visible={resultsVisible}
-          loading={resultsLoading}
+          loading={searchLoading}
+          results={searchResults}
         />
       </div>
     </Container>
   );
 };
 
-export default Searchbar;
+const mapStateToProps = state => ({
+  searchResults: state.homeReducer.searchResults,
+  searchLoading: state.homeReducer.searchLoading
+});
+
+export default connect(mapStateToProps, { searchRecipes })(Searchbar);

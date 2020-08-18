@@ -65,7 +65,7 @@ const PostForm = ({ createRecipe, loading, error, postSuccessful }) => {
       ...(img && { [imgName]: img.base64 }),
       directionsDto: [
         ...values.directionsDto.map((direction, index) => {
-          return { ...direction, stepNumber: index + 1 };
+          return { ...direction, stepNumber: index };
         })
       ]
     };
