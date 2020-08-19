@@ -10,12 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/recipes/")
 public class RecipeController {
     private final RecipeService recipeService;
+
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<RecipeListResponse> getRecipes() {
         try {
@@ -27,6 +29,7 @@ public class RecipeController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+    @CrossOrigin
     @GetMapping("{id}")
     public ResponseEntity<RecipeResponse> getRecipe(@PathVariable(name = "id") long id) {
         try {
@@ -38,6 +41,7 @@ public class RecipeController {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<RecipeResponse> addRecipe(@RequestBody RecipeRequest req) {
         try {
@@ -57,6 +61,7 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+    @CrossOrigin
     @GetMapping("/user/{userId}")
     public ResponseEntity<RecipeListResponse> getRecipesByUserId(@PathVariable(name = "userId") long userId) {
         try {
@@ -68,6 +73,8 @@ public class RecipeController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @CrossOrigin
     @GetMapping("search/{title}")
     public ResponseEntity<RecipeListResponse> getListByTitle(@PathVariable(name = "title") String title ) {
         try {

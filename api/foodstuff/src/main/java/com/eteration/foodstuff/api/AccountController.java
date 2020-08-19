@@ -16,10 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -30,6 +27,7 @@ public class AccountController {
     private final JwtTokenUtil jwtTokenUtil;
     private final UserServiceImpl userService;
 
+    @CrossOrigin
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req) throws AuthenticationException {
         try {
@@ -42,7 +40,7 @@ public class AccountController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
-
+    @CrossOrigin
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest req) throws AuthenticationException {
         try {

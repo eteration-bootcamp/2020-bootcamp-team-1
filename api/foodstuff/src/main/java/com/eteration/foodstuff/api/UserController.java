@@ -9,12 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/users/")
 public class UserController {
     private final UserService userService;
+
+    @CrossOrigin
     @GetMapping("{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable(name = "id") long id) {
         try {
@@ -26,6 +28,7 @@ public class UserController {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
+    @CrossOrigin
     @GetMapping("list")
     public ResponseEntity<UserListResponse> getUsers() {
         try {
@@ -37,6 +40,7 @@ public class UserController {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<UserResponse> addUser(@RequestBody UserRequest req) {
         try {
@@ -47,6 +51,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    @CrossOrigin
     @PutMapping
     public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest req) {
         try {
