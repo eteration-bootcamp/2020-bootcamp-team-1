@@ -37,12 +37,14 @@ Foodstuff is a web app that users can share, list and see recipes or *secret for
 ### Used Technologies
 * Java 8
 * Spring Boot
+* Spring Web
 * Spring Security
 * Maven
 * JPA / Hibernate
 * MySQL Conector
 * Mapstruct
 * Project Lombok
+* Json Web Token
 
 ### API ENDPOINTS
 #### Recipes API
