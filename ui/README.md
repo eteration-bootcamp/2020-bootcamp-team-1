@@ -23,7 +23,7 @@ Generates a test coverage report of application. It can be seen in the `coverage
 
 ## Next Steps to Improve
 
-- Increasing code coverage with unit tests, and integration tests to redux-connected components
+- There's some unit tests, reducer tests, saga tests. But not enough of them! Increasing code coverage with unit tests, and integration tests to redux-connected components
 - Splitting code into components even more
 - Infinite loading for Home page
 - Some style improvements
