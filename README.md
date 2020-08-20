@@ -33,6 +33,8 @@ Foodstuff is a web app that users can share, list and see recipes or *secret for
 ````
    $ docker-compose up
 ````
+## ** Please check /ui folder's README for front-end documentation **
+
 ## BACKEND
 ### Used Technologies
 * Java 8
