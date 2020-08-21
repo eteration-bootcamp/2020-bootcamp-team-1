@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to connect to the desired back-end
+Change the ***axios.defaults.baseUrl*** to desired back-end address inside ***src/api/index.js***.
+
 ## Available Scripts
 
 In the project directory, you can run:
