@@ -1,0 +1,18 @@
+#todo-controls.row {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  margin: 70px 0 32px 0;
+}
+
+#todo-controls .form-control {
+  width: unset;
+  flex-grow: 1;
+  margin-right: 16px;
+}
+
+#text-length-informer {
+  position: absolute;
+  right: 5rem;
+  top: 2.4rem;
+}

@@ -1,0 +1,16 @@
+.App {
+  /* text-align: center; */
+}
+
+.i-b {
+  display: inline-block;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+.light-text {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 30%);
+}
