@@ -1,4 +1,4 @@
-# 2020 Bootcamp Team 1 - `<team-name>`
+# 2020 Bootcamp Team 1
 
 ## Team Members
 
